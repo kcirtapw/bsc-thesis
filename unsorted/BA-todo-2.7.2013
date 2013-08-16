@@ -1,0 +1,9 @@
+scripte zum automatisierten/komandozeilentesten
+statistiken über ttl
+bei rekursiver route, ttl entsprechend setzen; loggen bei drops (ttl timeout, node drop)
+testen wegen multiplen routen bei randomwalk
+reihenfolge der bearbeitung auf dem router: fifo
+mehrere pings "testen" (sollte eh gehen)
+parameter für waitings nach init phase, und zwischen pings
+
+stef schickt größere netzwerke

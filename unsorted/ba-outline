@@ -1,0 +1,45 @@
+Introduction
+ * What is a Darknet, problems in analysing
+ * bisherige methoden der analyse
+ * advantages of event based large scale simulation
+Darknets
+ * more detailed explanation of darknets
+ * short survey of existing darknets
+ * abrevaition of key elements/concepts
+My Model
+ * explaination of my model
+ * how to extend the model (maybe by example mit random-walk und flooding)
+Simulations and Analysis
+ * showing the scalability of the model/implementation
+ * maybe explain improvements for increased simulation performance
+ * //insert academic question here//
+Conclusion & Future Work
+ * the model is absolute epic and everyone should use at least two of it...
+
+Fragestellungen (new)
+* scalability
+* annäherung multi-fanout randomwalk an flooding
+* wahrscheinlichkeit faild pfad beim return
+
+metriken: pfadlänge, overall *sent* message count
+4 messmethoden: analytisch, simulation, emulation, messung (testbed und messung in echtem netz)
+
+related work
+mit implementierung: oneswarm, turtle/waste, gnunet, freenet
+rein wissenschaftliche arbeiten: mcon, x-vine, (prefix embedding)
+
+
+
+
+
+
+- ohne wissenschaftliche Fragestellung/Analyse irgendwie wenig
+- "irgendwas kleines" wirkt drangeklatscht und bilig
+- was möchte ich mit der Analyse erreichen? nur das Model&System demonstrieren oder eine Frage beantworten?
+--- würde ersteres reichen?
+----- "komplette" Untersuchung eines einfachen Netzwerkes, bzw ggf die Auswirkungen von ein/wenigen Parameter auf einfaches Netz
+--- ansonsten: was für Fragen kann ich mit RandomWalk/Flooding untersuchen?
+
+Fragestellung:
+- wie oft brechen pfade auf dem rückweg mit chrun-model zusammen? (bei flooding am besten)
+- paralleles randomwalk, wie hoch muss parallelität sein damit man nahe genug an flooding heran kommt aber nicht alle nachbarn kontaktieren muss

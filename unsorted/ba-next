@@ -1,0 +1,14 @@
+things to test:
+scalability (Di; accounts?)
+
+metrikenn für randomwalk und flodding:
+wie viele knoten werden kontaktiert, workload auf den knoten, pfadlänge (ggf auch nur verteilung 
+wie oft wird einknoten im durschschnitt kontaktiert)
+
+zusätzlich:
+churn-model: omnet? 
+wie verhalten sich die routings (metriken) mit churn
+
+node sendet offline node nachricht; was passiert?
+
+erweitern: offline node detection (Do/Fr)
