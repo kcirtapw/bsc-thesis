@@ -18,6 +18,7 @@
         * (historical perspective ?)
         * mainly grouped/sorted by used test/analysing methods
         * implemented/pure theoretical work
+        * (turtle/wase,gnugnet,oneswarm,freenet,mcon,x-vine, (eventuell prefix embedding von Andreas Höfer)
     * Recap and explain used metrices and analysis methods
 
 3. My Model
