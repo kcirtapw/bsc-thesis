@@ -1,6 +1,8 @@
 #filemasks
 *~
+*.log
+*.aux
 
 #concrete files
 outline.html
-
+thesis-darknetsim.pdf
