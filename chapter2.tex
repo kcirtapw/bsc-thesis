@@ -1,31 +1,40 @@
 \chapter{Darknets}
 
+In this chapter the concept, the characteristics and the thereby arising problems of a darknet are explained. Metrices and measurement methods for darknet evaluation are discussed. Existing darknet approaches are surveyed for the used evalutaion methods. 
+
 \section{What is a P2P network, what a darknet and how do they diver?}
-In modernen Computernetzen nicht mehr nur klassisches Client/Server-Model; unter anderem p2p; filesharing hat viel zur entwicklung beigetragen; aber auch content-delivery entwicklung; wird vermehrt auch auf anonymitaet wertgelegt;
 
-darknetze als p2p netze in denen nur mit vertrauten knoten kommuniziert wird; es sollten keinerlei informationen an nicht-vertraue gelangen; informationen: sowohl wahre identitaet, angebotene & abgerufene informationen; als auch allein die teilnahme am netzwerk selbst; kann als geschlossene gruppe oder friend-to-friend realisiert sein;
+In modern computer networks not only the classic client/server architecture is used but also peer-to-peer (P2P) networks have gained importance. Although probably the main driving forces for its development were the use for filesharing, today P2P is used for communication, content delivery and streaming.
 
-bei gruppe kennt/vertraut gezwungenermassen jeder jedem und alle teilnehmer sind bekannt; routing und suchen kein wirkliches problem; kann im prinzip klassisches P2P mit zugangskontrolle zb ueber zentrale instanz oder gemeinsamen geheimniss sein;
+Besides this the demand for privacy and anonymity preserving communication channels has risen. Surveiling and censoring regiemes and governments endager the freedom of speach. One approach for such a secure communication channel are darknet networks.
 
-im gegensatz zu gruppe wird bei friend-to-friend auch die teilnahme am netz selbst und die eigenen kontakte (moeglichst) vor anderen (ausser den direkten kontakten) geheim gehalten; hierbei sogar oft unklar von wem genau reqeust/response zu information kommt;
+Darknets are P2P overlays in which one communicates and leaks privacy relevant informations to trusted participants only. This includes both the communications content as well as the trusted relation to ones peers. Even the participation in the network itself is tried to kept secret to non-participants. Further common practices are splitting larger content in chunks and encrypting any stored and distributed information so that both the storing and some forwarding nodes can't read its content. Darknets can either be realised as a closed group system or as a friend-to-friend(F2F) network.
 
-macht routing/suchen/zustellen von infromationen sehr schwer; vor allem sehr schwer messbar, da einzelner teilnehmer nur seine nachbarn und somit (potentiell) fast nichts vom netzwerk sieht
+In a closed group there is a limited userbase in which everyone is visible and possibly known to each other. If one joins such a network, as one is invited by a participant, he or she will be visible to each member of the group. In such a senario finding information and routing messages is easy. If there is not a direct connection between each member, at least the topology is no secret whereby classical search and routing mechanisms can be used.
+
+Whereas in F2F oriented darknets one knows, connects and communicates only with peers a trust relation exists with. So arbitrary connections between nodes, as common in traditional P2P networks, is not allowed. It is tried to cover up any information about ones connections to neighbours, content or services privoded or requestet by one. Aditionally to just not tell about ones neightbours forwarded requests will be changed to originate from one self. Incoming responses will be inversely modified. So a node can not tell if a request (or a response to a previous request) comes from the node it recieved it from or is just forwarded for another node.
+
+In this thesis we consider only F2F oriented darknets since most of the problems with closed group darknets can be and are easily solved by existing techniques used in the internet or in classic P2P networks.
+
+\section{Implications of darknet characteristics}
+
+ausser netzwerktraffic zu/informationen bei nachbarn keine hinweise auf teilnahme am netzwerk; durch verschleierung des ursprungs von requests/responses so gut wie keine topologieinfos;
+
+problematisch bei routing, da erstmal unklar welches der beste naechste hop/node ist; aber auch suche/abfrage von infromation da ggf unklar wer sie hat/wo sie ist
+
+macht einerseits ueberwachung andererseits messung (fuer entwicklung/verbesserung) fast unmoeglich; aber zum entwickeln und verbessern muss man verhalten testen u bewerten koennen.
+
+\section{metrices for routing (specially in darknets) evaluation}
+
+For measuring and comparing routing algorythms several metrices exist. Not all of them a of practical use if it comes to peer-to-peer and darknet networks. A simple first aproach  is the duration a packet takes to reach its destination, often refered to as the ping to the destination. But since this depends on many factors, which even can vary over time, it is not quite comparable and thus unusable for measuring and evaluating routing algorythms.
+
+A less varying metric is the path lenght, the amount of hops a packet has to be forwarded on until it reaches its destination. The path length, and its average and maximum in a network, is the most commonly used metric to compare routings.
 
 
-\section{...}
-\begin{itemize}
-\item    Detailed explanation of characteristics
-\begin{itemize}
-\item        (short) what is a P2P overlay; how they differ
-\item        only connected to people one trusts
-\item        no (concrete) topology information leakage
-\end{itemize}
-\item    Implications of those characteristics
-\item    Survey of existing darknets
-\begin{itemize}
-\item        (historical perspective ?)
-\item        mainly grouped/sorted by used test/analysing methods
-\item        implemented/pure theoretical work
-\end{itemize}
-\item    Recap and explain used metrices and analysis methods
-\end{itemize}
+
+\section{Available measurement methods for darknets}
+
+
+\section{Survey of previous darknets}
+
+
