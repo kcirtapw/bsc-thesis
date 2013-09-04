@@ -1,18 +1,18 @@
 \chapter{Darknets}
 
-In this chapter the concept, the characteristics and the thereby arising problems of a darknet are explained. Metrices and measurement methods for darknet evaluation are discussed. Existing darknet approaches are surveyed for the used evalutaion methods. 
+In this chapter the concept, the characteristics and the thereby arising problems of a darknet are explained. Matrices and measurement methods for darknet evaluation are discussed. Existing darknet approaches are surveyed for the used evaluation methods. 
 
 \section{What is a P2P network, what a darknet and how do they diver?}
 
-In modern computer networks not only the classic client/server architecture is used but also peer-to-peer (P2P) networks have gained importance. Although probably the main driving forces for its development were the use for filesharing, today P2P is used for communication, content delivery and streaming.
+In modern computer networks not only the classic client/server architecture is used but also peer-to-peer (P2P) networks have gained importance. Although probably the main driving forces for its development were the use for file sharing, today P2P is used for communication, content delivery and streaming.
 
-Besides this the demand for privacy and anonymity preserving communication channels has risen. Surveiling and censoring regiemes and governments endager the freedom of speach. One approach for such a secure communication channel are darknet networks.
+Besides this the demand for privacy and anonymity preserving communication channels has risen. Surveying and censoring regimes and governments endanger the freedom of speech. One approach for such a secure communication channel are darknet networks.
 
-Darknets are P2P overlays in which one communicates and leaks privacy relevant informations to trusted participants only. This includes both the communications content as well as the trusted relation to ones peers. Even the participation in the network itself is tried to kept secret to non-participants. Further common practices are splitting larger content in chunks and encrypting any stored and distributed information so that both the storing and some forwarding nodes can't read its content. Darknets can either be realised as a closed group system or as a friend-to-friend(F2F) network.
+Darknets are P2P overlays in which one communicates and leaks privacy relevant information to trusted participants only. This includes both the communications content as well as the trusted relation to ones peers. Even the participation in the network itself is tried to kept secret to non-participants. Further common practices are splitting larger content in chunks and encrypting any stored and distributed information so that both the storing and some forwarding nodes can't read its content. Darknets can either be realized as a closed group system or as a friend-to-friend(F2F) network.
 
-In a closed group there is a limited userbase in which everyone is visible and possibly known to each other. If one joins such a network, as one is invited by a participant, he or she will be visible to each member of the group. In such a senario finding information and routing messages is easy. If there is not a direct connection between each member, at least the topology is no secret whereby classical search and routing mechanisms can be used.
+In a closed group there is a limited user base in which everyone is visible and possibly known to each other. If one joins such a network, as one is invited by a participant, he or she will be visible to each member of the group. In such a scenario finding information and routing messages is easy. If there is not a direct connection between each member, at least the topology is no secret whereby classical search and routing mechanisms can be used.
 
-Whereas in F2F oriented darknets one knows, connects and communicates only with peers a trust relation exists with. So arbitrary connections between nodes, as common in traditional P2P networks, is not allowed. It is tried to cover up any information about ones connections to neighbours, content or services privoded or requestet by one. Aditionally to just not tell about ones neightbours forwarded requests will be changed to originate from one self. Incoming responses will be inversely modified. So a node can not tell if a request (or a response to a previous request) comes from the node it recieved it from or is just forwarded for another node.
+Whereas in F2F oriented darknets one knows, connects and communicates only with peers a trust relation exists with. So arbitrary connections between nodes, as common in traditional P2P networks, is not allowed. It is tried to cover up any information about ones connections to neighbors, content or services provided or requested by one. Additionally to just not tell about ones neighbors forwarded requests will be changed to originate from one self. Incoming responses will be inversely modified. So a node can not tell if a request (or a response to a previous request) comes from the node it received it from or is just forwarded for another node.
 
 In this thesis we consider only F2F oriented darknets since most of the problems with closed group darknets can be and are easily solved by existing techniques used in the internet or in classic P2P networks.
 
@@ -24,11 +24,11 @@ problematisch bei routing, da erstmal unklar welches der beste naechste hop/node
 
 macht einerseits ueberwachung andererseits messung (fuer entwicklung/verbesserung) fast unmoeglich; aber zum entwickeln und verbessern muss man verhalten testen u bewerten koennen.
 
-\section{metrices for routing (specially in darknets) evaluation}
+\section{metrics for routing (specially in darknets) evaluation}
 
-For measuring and comparing routing algorythms several metrices exist. Not all of them a of practical use if it comes to peer-to-peer and darknet networks. A simple first aproach  is the duration a packet takes to reach its destination, often refered to as the ping to the destination. But since this depends on many factors, which even can vary over time, it is not quite comparable and thus unusable for measuring and evaluating routing algorythms.
+For measuring and comparing routing algorithms several matrices exist. Not all of them a of practical use if it comes to peer-to-peer and darknet networks. A simple first approach  is the duration a packet takes to reach its destination, often referred to as the ping to the destination. But since this depends on many factors, which even can vary over time, it is not quite comparable and thus unusable for measuring and evaluating routing algorithms.
 
-A less varying metric is the path lenght, the amount of hops a packet has to be forwarded on until it reaches its destination. The path length, and its average and maximum in a network, is the most commonly used metric to compare routings.
+A less varying metric is the path length, the amount of hops a packet has to be forwarded on until it reaches its destination. The path length, and its average and maximum in a network, is the most commonly used metric to compare outings.
 
 
 
