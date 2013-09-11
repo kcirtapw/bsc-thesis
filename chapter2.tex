@@ -21,7 +21,10 @@ Messages whose destination is not within a nodes neighbors have to be forwarded 
 
 The same difficultys arise for measuring any quality in a darknet, e.g. evaltuation and comparison in the design process.
 
-In general several metrices exist for measurement and comparison of routing algorithms. Not all of them are of practical use if it comes to peer-to-peer and darknet networks. A simple first approach  is the duration a packet takes to reach its destination, often referred to as the ping to the destination. But since this depends on many factors, which even can vary over time, it is not quite comparable and thus unusable for measuring and evaluating routing algorithms.
+In general several metrices exist for measurement and comparison of routing algorithms. But since we utilize an abstract model of darknets we consider basic metrices only as they apply to all kind of networks.
+
+
+ Not all of them are of practical use if it comes to peer-to-peer and darknet networks. A simple first approach is the duration a packet takes to reach its destination, often referred to as the ping to the destination. But since this depends on many factors, which even can vary over time, it is not quite comparable and thus unusable for measuring and evaluating routing algorithms.
 
 A less varying metric is the path length, the amount of hops a packet has to be forwarded on until it reaches its destination. The path length, and its average and maximum in a network, is the most commonly used metric to compare outings.
 
