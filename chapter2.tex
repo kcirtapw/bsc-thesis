@@ -10,17 +10,18 @@ But in conventional P2P networks neither the membership in the network nor the s
 
 Therefor darknets are P2P overlays in which participants connects and communicates only to others they have some trust relation with. Nodes do not pass to whom they are connected to. This leads to only a minimum number of trusted participants knowing of ones membership in a darknet. Reqeusts for storing, searching and receiving files are forwarded to other nodes but are modified to look as they come form one self. The same is done accordingly with responses. Thereby no node on such a forwarding chain can tell if a request originates from the node it received the request from or any node beyond it. Any data distributed in the network is chunked in same-sized parts which are addressed and distributed individually. Furthermore as they are encrypted no node storing or forwarding them knows what files they contain.
 
+
 \section{Implications of darknet characteristics}
 
 In summary the membership of a node in a darknet is only known to its trusted peers, the files stored on a node are unknown to and unreadable by this node and requests/responses can originate from either the node they are received from or any node beyond this. This high rate of protection of privacy relevant information comes with numerous difficultiy in designing and evaluating simultaneously resiliant and scalable darknets.
 
 
 
-\section{metrices for routing (specially in darknets) evaluation}
+\section{metrics for routing (specially in darknets) evaluation}
 
-For measuring and comparing routing algorythms several metrices exist. Not all of them a of practical use if it comes to peer-to-peer and darknet networks. A simple first aproach  is the duration a packet takes to reach its destination, often refered to as the ping to the destination. But since this depends on many factors, which even can vary over time, it is not quite comparable and thus unusable for measuring and evaluating routing algorythms.
+For measuring and comparing routing algorithms several matrices exist. Not all of them a of practical use if it comes to peer-to-peer and darknet networks. A simple first approach  is the duration a packet takes to reach its destination, often referred to as the ping to the destination. But since this depends on many factors, which even can vary over time, it is not quite comparable and thus unusable for measuring and evaluating routing algorithms.
 
-A less varying metric is the path lenght, the amount of hops a packet has to be forwarded on until it reaches its destination. The path length, and its average and maximum in a network, is the most commonly used metric to compare routings.
+A less varying metric is the path length, the amount of hops a packet has to be forwarded on until it reaches its destination. The path length, and its average and maximum in a network, is the most commonly used metric to compare outings.
 
 
 
