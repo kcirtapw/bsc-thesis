@@ -24,9 +24,10 @@ The same difficulties arise for measuring any quality in a darknet, for example 
 \begin{itemize}
 \item The simplest metric is the \emph{path length}, or \emph{hop count}, the amount of hops a packet has to be forwarded on until it reaches its destination. It is an important factor of delays in communication and also affects the bandwidth between nodes. The shorter the choosen path is, the faster the communication is and the less the network has to be utilized. The path length, and its average and maximum in a network, are the most commonly used metrices to compare routings.
 
-\item The ratio of amount of lost or dropped messages to the amount of sent messages is a metric for the quality and reliability of a network. 
+\item The \emph{lost/sent ratio}, the ratio of the amount of lost or dropped messages to the amount of sent messages, is a metric for the quality and reliability of a network. It
 
-\item
+\item A similar metric is the \emph{overhead}. It measures how much resources have to be used to transmit the actual information. It can be measured as the \emph{overhead messages ratio} or the overhead bandwith ratio.
+
 \end{itemize}
 
 \section{Available measurement methods for darknets}
