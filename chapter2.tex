@@ -17,9 +17,11 @@ Reqeusts for storing, searching and receiving files are forwarded to other nodes
 
 \section{Implications of darknet characteristics}
 
-In summary the membership of a node in a darknet is only known to its trusted peers, the files stored on a node are unknown to and unreadable by this node, and messages can originate from either the node they are received from or any node beyond it. This high rate of protection of privacy relevant information comes with numerous difficultiy in designing and evaluating simultaneously resiliant and scalable darknets.
+In summary the membership of a node in a darknet is only known to its trusted peers, the files stored on a node are unknown to and unreadable by this node, and messages can originate from either the node they are received from or any node beyond it.
 
-Messages whose destination is not within a nodes neighbors have to be forwarded to some nodes in between. In conventional networks the next node can be choosen on the basis of topology information about the network, e.g. in form of a classical routing table or structured overlays in P2P systems. Though any topology information about the network is confidential they are not distributed and collected by the nodes and not available for deciding to which node a message is given next. This holds as well for meta topology information such as the origin of a message and therefore the direction the according node lies within.
+This high rate of protection of privacy relevant information comes with numerous difficultiy in designing and evaluating simultaneously resiliant and scalable darknets. Messages whose destination is not within a nodes neighbors have to be forwarded to some nodes in between. In conventional networks the next node can be choosen on the basis of topology information about the network, e.g. in form of a classical routing table or structured overlays in P2P systems.
+
+Though any topology information about the network is confidential, they are not distributed and collected by the nodes and not available for deciding to which node a message is given next. This holds as well for meta topology information such as the origin of a message and therefore the direction the according node lies within.
 
 \section{metrices for routing (specially in darknets) evaluation}
 
