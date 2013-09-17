@@ -4,10 +4,13 @@
 
 For evaluating distributet systems like P2P overlays, and darknets in particular, there are four different approaches.
 
-The most theoretical one is to bulid a \emph{analyical model} and derive formulas for the relevant values from it. This is quite flexible for varying parameters and very scalable and fast. But on the other hand the derivation of formulars can be challenging and small changes in the model or algorythm can render most of the work inappropriate. With analytical models upper and/or lower bounds can be estimated, but real world performance can depend on protocol details hard do model.
+The most theoretical one is to bulid a \emph{analyical model} and derive formulas for the relevant values from it. This is quite flexible for varying parameters and very scalable and fast. But on the other hand the derivation of formulas can be challenging and small changes in the model or algorythm can render most of the work inappropriate. With analytical models upper and/or lower bounds can be estimated, but real world performance can depend on protocol details hard do model.
 
-A more realisitic approach is to \empg{simulate} a client based on the model. 
+A more realisitic approach is to \emph{simulate} a client based on the model. The abstract relevant behavior is implemented in the simulation environment. Large networks and complex algorythms can be simulated while implementation is strait forward and easier then building a proper formula. However, the algorythms must soundly be implemented and simulation can take much computation time and memory depending on the model and the network to be simulated.
 
+Commonly less implementation effort is needed when \emph{emulating} a network. This is commonly done by removing all irrelevant and independant parts of the original software and run many instances of such slimed client. Main benefit is that no new software has to be written that can be faulty or not sound to the original, but in common the client has still much overhead e.g. for network communication. This consumpts much more resources in time and memory than a simulation.
+
+The original software can as well be tested, almost or completely unmodified, in a \emph{testbed}. This is used to test the functionality it self but scales very badly for multiple nodes or even larger networks. 
 
 \section{Node based with fixed neighbor set and add-hoc anonymity (static)}
 
