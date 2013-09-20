@@ -10,7 +10,12 @@ Virtually every P2P client supports a basic set of capabilities. These are conne
 
 So on an abstract level, a P2P node has to be able to connect to other nodes, make requests and send an response to a received request. This is the same for darknet nodes. The peers a darknet node connects to or accepts connections from of course limited.
 
-Additionally a darknet client has to be abled to forward reqeuests to other nodes. Typical for darknets is the hop-anonymity achieved by modifying forwarded messages as to come from one self. Responses to forwarded requests have to be modified and forwarded respectingly.
+Additionally a darknet client has to be abled to forward reqeuests to other nodes. Typical for darknets is the hop-anonymity achieved by modifying forwarded messages as to come from one self. Responses to forwarded requests have to be modified and forwarded respectingly to the origin the reqeust was received from.
+
+This simple model is static, all nodes are online all the time and no failing node is possible. It is very simple and scalable because only a minimal overhead is needed. But it is not very realisitc since nodes are not online all the time and can fail on one way or another.
 
 \section{Churn model extension with bootstrapping and offline detection (dynamic)}
+
+
+
 \section{(??) Extension of the model by example}
