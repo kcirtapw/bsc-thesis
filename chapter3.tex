@@ -8,7 +8,7 @@ As explained in Chapter 2.4, different methods to evaluate darknet systems exist
 
 Virtually every P2P client supports a basic set of capabilities. These are connecting to other clients, storing and recieving of information and some kind of searching. Depending on the network searching for files or other nodes can be different or the same. Naturally these reqests can or even have to be responded to.
 
-So on an abstract level, a P2P node has to be able to connect to other nodes, make requests and send an response to a received request. This is the same for darknet nodes. The basic model uses in this work it is not distingueshed between the different request types since in most cases it makes no difference for routing algorithms. Just the peers a darknet node connects to or accepts connections and messages from of course are limited.
+So on an abstract level, a P2P node has to be able to connect to other nodes, make requests and send an response to a received request. The basic model used in this work does not distinguesh between the different request types since in most cases it makes no difference for routing algorithms. This is the same for darknet nodes. Just the peers a darknet node connects to or accepts connections and messages from of course are limited.
 
 Additionally a darknet client has to be abled to forward reqeuests to other nodes. In darknets the hop-anonymity is typically achieved by modifying forwarded messages as to come from one self. Responses to forwarded requests have to be modified and forwarded respectively to the origin the reqeust was received from.
 
