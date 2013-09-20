@@ -16,6 +16,8 @@ This simple model is static, all nodes are online all the time and a failing nod
 
 \section{Churn model extension with bootstrapping and offline detection (dynamic)}
 
-To take into account the posibilitie of nodes shutting down, having connection problems or failing otherwise, the model is extended by a churn based lifetime model. It gives the nodes a probabilistic lifetime, so not all nodes are online in the begining, and nodes can toggle their online/offline state during the simulation.
+To take into account the posibilitie of nodes shutting down, having connection problems or failing otherwise, the model is extended by a churn based lifetime model. It gives the nodes a probabilistic lifetime, so not all nodes are online in the begining, but they bootstrap into a network. Nodes can toggle their online/offline state during the simulation.
+
+If a node goes offline it has to be detected by its peers. Therefor, an acknolage message (short: ACK) is send back on receieving a message. If such an ACK is not received within a timeout, the message can be resent up to a selectable number of times. If no ACK is received by then, the peer is removed from the connected list.
 
 \section{(??) Extension of the model by example}
