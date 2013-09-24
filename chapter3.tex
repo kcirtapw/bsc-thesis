@@ -14,6 +14,7 @@ Additionally a darknet client has to be abled to forward reqeuests to other node
 
 This simple model is static, all nodes are online all the time and a failing node is not possible. It is very simple and scalable because only a minimal overhead is needed. But it is not very realisitc since nodes are not online all the time and can fail on one way or another.
 
+
 \section{Churn model extension with bootstrapping and offline detection (dynamic)}
 
 To take into account the posibilitie of nodes shutting down, having connection problems or failing otherwise, the model is extended by a churn based lifetime model. It gives the nodes a probabilistic lifetime, so not all nodes are online in the begining, but they bootstrap into a network. Nodes can toggle their online/offline state during the simulation.
