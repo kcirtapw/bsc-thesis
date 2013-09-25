@@ -10,7 +10,7 @@ Virtually every P2P client supports a basic set of capabilities. These are conne
 
 So on an abstract level, a P2P node has to be able to connect to other nodes, make requests and send an response to a received request. The basic model used in this work does not distinguesh between the different request types since in most cases it makes no difference for routing algorithms. This is the same for darknet nodes. Only the peers a darknet node connects to or accepts connections and messages from of course are limited. 
 
-In practice transfering the real world trust relation to the darknet and the distribution of the current addresses of onces peers are two of the hardest tasks. There are some fundamentaly different posibilities to solve this depending on the overall design. But since these tasks are better analyzable than routing algorythms our model excludes these topics and concentrates on routing.
+In practice transfering the real world trust relation to the darknet and the distribution of the current addresses of onces peers are two of the hardest tasks. There are some fundamentaly different posibilities to solve this depending on the overall design. But since these tasks are better analyzable than routing algorythms our model excludes these topics and concentrates on routing makeing it easyer to evaluate this seperate problem.
 
 Additionally a darknet client has to be abled to forward reqeuests to other nodes. In darknets the hop-anonymity is typically achieved by modifying forwarded messages as to come from one self. Responses to forwarded requests have to be modified and forwarded respectively to the origin the reqeust was received from.
 
