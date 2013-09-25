@@ -8,16 +8,18 @@ As explained in Chapter 2.4, different methods to evaluate darknet systems exist
 
 Virtually every P2P client supports a basic set of capabilities. These are connecting to other clients, storing and recieving of information and some kind of searching. Depending on the network searching for files or other nodes can be different or the same. Naturally these reqests can or even have to be responded to.
 
-So on an abstract level, a P2P node has to be able to connect to other nodes, make requests and send an response to a received request. The basic model used in this work does not distinguesh between the different request types since in most cases it makes no difference for routing algorithms. This is the same for darknet nodes. Just the peers a darknet node connects to or accepts connections and messages from of course are limited.
+So on an abstract level, a P2P node has to be able to connect to other nodes, make requests and send an response to a received request. The basic model used in this work does not distinguesh between the different request types since in most cases it makes no difference for routing algorithms. This is the same for darknet nodes. Only the peers a darknet node connects to or accepts connections and messages from of course are limited. 
+
+In practice transfering the real world trust relation to the darknet and the distribution of the current addresses of onces peers are two of the hardest tasks. There are some fundamentaly different posibilities to solve this depending on the overall design. But since these tasks are better analyzable than routing algorythms our model excludes these topics and concentrates on routing.
 
 Additionally a darknet client has to be abled to forward reqeuests to other nodes. In darknets the hop-anonymity is typically achieved by modifying forwarded messages as to come from one self. Responses to forwarded requests have to be modified and forwarded respectively to the origin the reqeust was received from.
 
-This simple model is static, all nodes are online all the time and a failing node is not possible. It is very simple and scalable because only a minimal overhead is needed. But it is not very realisitc since nodes are not online all the time and can fail on one way or another.
+This simple model is static, all nodes are always online and a failing node is not possible. It is very simple and scalable because only a minimal overhead is needed. But it is not very realisitc since nodes are not online all the time and can fail on one way or another.
 
 
 \section{Churn model extension with bootstrapping and offline detection (dynamic)}
 
-To take into account the posibilitie of nodes shutting down, having connection problems or failing otherwise, the model is extended by a churn based lifetime model. It gives the nodes a probabilistic lifetime, so not all nodes are online in the begining, but they bootstrap into a network. Nodes can toggle their online/offline state during the simulation.
+To take into account the posibilitie of nodes shutting down, having connection problems or failing otherwise, the model is extended by a churn based lifetime model. It gives the nodes a probabilistic lifetime, so not all nodes are online in the begining, but they bootstrap into a network. The have to establish a connection to their peers. Nodes online/offline state can change during the simulation and a reconnection is needed.
 
 If a node goes offline it has to be detected by its peers. Therefor, an acknolage message (short: ACK) is send back on receieving a message. If such an ACK is not received within a timeout, the message can be resent up to a selectable number of times. If no ACK is received by then, the peer is removed from the connected list.
 
