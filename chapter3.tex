@@ -21,8 +21,9 @@ This simple model is static, all nodes are always online and a failing node is n
 
 To take into account the posibilitie of nodes shutting down, having connection problems or failing otherwise, the model is extended by a churn based lifetime model. It gives the nodes a probabilistic lifetime, so not all nodes are online in the begining, but they bootstrap into the network. They have to establish a connection to their peers.
 
-Nodes online/offline state can change during the simulation the peers of a node have to get this information. \todo{change code: model it by offline/online notification from simulation environment}
+Nodes online/offline state can change during the simulation, so the peers of this node have to be informed. As this simulator concentrates only on the routing algorythm we are not concerned how a node would detect a change of state of one of its peers. The simulator notifies all peers of a node of the change. \todo{change code: model it by offline/online notification from simulation environment}
 
+In the real world something like an TCP-like acknowledgment method would be used. Nodes 
 
 
 \section{(??) Extension of the model by example}
