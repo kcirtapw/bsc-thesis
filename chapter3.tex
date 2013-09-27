@@ -21,7 +21,7 @@ This simple model is static, all nodes are always online and a failing node is n
 
 To take into account the posibilitie of nodes shutting down, having connection problems or failing otherwise, the model is extended by a churn based lifetime model. It gives the nodes a probabilistic lifetime, so not all nodes are online in the begining, but they bootstrap into the network. They have to establish a connection to their peers.
 
-Nodes online/offline state can change during the simulation and a reconnection is needed. This as 
+Nodes online/offline state can change during the simulation the peers of a node have to get this information. \todo{change code: model it by offline/online notification from simulation environment}
 
 
 
