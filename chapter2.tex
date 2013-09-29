@@ -102,6 +102,11 @@ A completely different approach is to build a \emph{analyical model} and derive 
 
 \subsection{Inbetween: emulation and simulation}
 
+By removing all irrelevant and independent parts of the original software and run many instances of such slimed clients a network can be \emph{emulated}. Main benefit is that no new software has to be written that can be faulty or not sound to the original one. While very little new implementation effort is required, in common the client has still much overhead e.g. for network communication.
+
+This consummes much more resources in time and memory than a \emph{simulation}, whereby the abstract, relevant behavior is implemented in a simulation environment. Large networks and complex algorithms can be simulated. Implementation is strait forward and can be easier then building a proper formula. However, the algorithms must soundly be implemented and simulation can take much computation time and memory depending on the model and the network to be simulated.
+
+
 \subsection{Applicability on darknets}
 
 
