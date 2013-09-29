@@ -13,7 +13,7 @@ The basic approach is to devide the responsipilities in different independant do
 
 The next level of reduction of responsibility is to reduce what a single component is responsible for. Avoidance of single-point-of-failures, redundancy, load balancing where single requests are distributed to different servers are the common ones. However, all the approaches on this level scale very badly and therefor are highly expensive when achieving good fault tolerance or dealing with large amount of clients or reqeuests.
 
-Taking the divison of responsibility to the maximum, every one is responsible for everything. This is basicaly the idea behind the peer-to-peer architecture in which every client is simultaniously a server. Of course not every client is responsible for everything in a network but each of them is participating in the service of the network, serving a fraction of the serving while for each fraction there are multiple servers. Since there is commonly no distinction between clients and servers every participant is called a (peer) node.
+Taking the splitting of responsibility to the maximum, every one is responsible for everything. This is basicaly the idea behind the peer-to-peer architecture in which every client is simultaniously a server. Of course not every client is responsible for everything in a network but each of them is participating in the service of the network, serving a fraction of the serving while for each fraction there are multiple servers. Since there is commonly no distinction between clients and servers a participant is called a node or peer.
 
 \subsection{P2P Overlays}
 
