@@ -1,31 +1,18 @@
-\chapter{Darknets}
+\chapter{Peer-to-peer Networks and Darknets}
 
+\section{Peer-to-peer Networks}
 
-In this chapter the concept, the characteristics and the thereby arising problems of darknets are explained. Metrics for darknet evaluation are discussed and existing darknet approaches are surveyed.
-\section{What is a P2P network, what a darknet and how do they diver?}
+\subsection{From classical to client/server to distributed systems}
 
-In modern computer networks not only the classic client/server architecture is used but also peer-to-peer (P2P) networks have gained importance. In this concept every client takes additionally a server-like role and distributes information to others clients, also called peers. Although probably the main driving force for its development was the use of file sharing, today P2P is adapted for communication, content delivery and multimedia streaming.
+\subsection{P2P Overlays}
 
-But in conventional P2P networks neither the membership in the network nor the stored or requested content is concealed. Since the demand for privacy and anonymity preserving communication channels has risen, some P2P concepts with respect to these needs have emerged. In such requirement needing environments like regime critical or whistle blowing communities it is essential that the membership in such a network and even more importantly the activities in it are kept secret.
-
-This includes the untracability of both the requester and the publisher of files and the location of files in the network. Even the meta data of files like the file size have to be protected since they may allow conclusions which content is requested. P2P networks respecting these requirements are called darknets.
-
-Therefor darknets are P2P overlays in which participants connects and communicates only to others they have some trust relation with. Nodes do not pass to whom they are connected to. This leads to only a minimum number of trusted participants knowing of ones membership in a darknet. 
-
-Requests for storing, searching and receiving files are forwarded to other nodes but are modified to look as they come form one self. Same is done accordingly with responses, or, more general, to all messages. Thereby no node on such a chain of forwarding nodes can tell if a message originates from the node it received it from or any node beyond it. Any data distributed in the network is chunked in same-sized parts which are addressed and distributed individually. Furthermore as they are encrypted no node storing or forwarding them knows what files they contain.
+\section{Darknets: privacy preserving P2P overlays}
 
 
 \section{Implications of darknet characteristics}
 
-In summary the membership of a node in a darknet is only known to its trusted peers, the files stored on a node are unknown to and unreadable by this node, and messages can originate from either the node they are received from or any node beyond it.
-
-This high rate of protection of privacy relevant information comes with numerous difficulties in designing and evaluating simultaneously resilient and salable darknets. Messages whose destination is not within a nodes neighbors have to be forwarded to some nodes in between. In conventional networks the next node can be chosen on the basis of topology information about the network, e.g. in form of a classical routing table or structured overlays in P2P systems.
-
-Though any topology information about the network is confidential, they are not distributed and collected by the nodes and not available for deciding to which node a message is given next. This holds as well for meta topology information such as the origin of a message and therefore the direction the according node lies within.
 
 \section{metrices for routing (specially in darknets) evaluation}
-
-The same difficulties arise for measuring any quality in a darknet, for example for evaluation and comparison of decisions while development. In general several metrics exist for measurement and comparison of routing algorithms. But since we utilize an abstract model of darknets we consider basic metrics as they apply to all kind of networks.
 
 \begin{itemize}
 \item The simplest metric is the \emph{path length}, or \emph{hop count}, the amount of hops a packet has to be forwarded on until it reaches its destination. It is an important factor of delays in communication and also affects the bandwidth between nodes. The shorter the chosen path is, the faster the communication is and the less the network has to be utilized. The path length, and its average and maximum in a network, are the most commonly used metrics to compare routing.
@@ -39,15 +26,6 @@ The same difficulties arise for measuring any quality in a darknet, for example 
 
 \section{Available measurement methods for darknets}
 
-For evaluating distributed systems like P2P overlays, and darknets in particular, there are four different approaches.
-
-The most theoretical one is to build a \emph{analyical model} and derive formulas for the relevant values from it. This is quite flexible for varying parameters and very scalable and fast. But on the other hand the derivation of formulas can be challenging and small changes in the model or algorithm can render most of the work inappropriate. With analytical models upper and/or lower bounds can be estimated, but real world performance can depend on protocol details hard do model.
-
-A more realistic approach is to \emph{simulate} a client based on the model. The abstract relevant behavior is implemented in the simulation environment. Large networks and complex algorithms can be simulated while implementation is strait forward and easier then building a proper formula. However, the algorithms must soundly be implemented and simulation can take much computation time and memory depending on the model and the network to be simulated.
-
-Commonly less implementation effort is needed when \emph{emulating} a network. This is commonly done by removing all irrelevant and independent parts of the original software and run many instances of such slimed client. Main benefit is that no new software has to be written that can be faulty or not sound to the original, but in common the client has still much overhead e.g. for network communication. This consummates much more resources in time and memory than a simulation.
-
-The original software can as well be tested, almost or completely unmodified, in a \emph{testbed}. This is used to test the functionality itself but scales very badly for multiple nodes or even larger networks. Particularly for evaluating darknets information gathering methods have to be added since this is against its normal use.
 
 \section{Survey of previous darknets}
 
