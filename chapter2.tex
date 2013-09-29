@@ -90,9 +90,15 @@ The same difficulties arise for measuring any quality in a darknet, for example 
 
 
 
-\section{Measurement methods for networks}
+\section{Evaluation methods for networks}
+
+For evaluating distributed systems like P2P overlays, and darknets in particular, there are four different approaches.
 
 \subsection{Full blown test environment or mathematical model evalution?}
+
+The original software can be tested, almost or completely unmodified, in a \emph{testbed}. This is used to test the functionality itself but scales very badly for multiple nodes and even more for larger networks. In particular for evaluating darknets, information gathering methods have to be added since this is against their normal usecase. \todo{vor und nachteile ausarbeiten}
+
+A completely different approach is to build a \emph{analyical model} and derive formulas for the relevant values from it. This is quite flexible for varying parameters and very scalable and fast. But on the other hand the derivation of formulas can be challenging and small changes in the model or algorithm can render most of the work inappropriate. With analytical models upper and/or lower bounds can be estimated, but real world performance can depend on protocol details and other factors hard do model.
 
 \subsection{Inbetween: emulation and simulation}
 
