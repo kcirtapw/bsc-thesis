@@ -1,53 +1,115 @@
-\chapter{Darknets}
+\chapter{Peer-to-peer Networks and Darknets}
 
 
-In this chapter the concept, the characteristics and the thereby arising problems of darknets are explained. Metrics for darknet evaluation are discussed and existing darknet approaches are surveyed.
-\section{What is a P2P network, what a darknet and how do they diver?}
+\section{Peer-to-peer (P2P) Networks}
 
-In modern computer networks not only the classic client/server architecture is used but also peer-to-peer (P2P) networks have gained importance. In this concept every client takes additionally a server-like role and distributes information to others clients, also called peers. Although probably the main driving force for its development was the use of file sharing, today P2P is adapted for communication, content delivery and multimedia streaming.
+In this section a short history of the internet leading to the development and spreading of peer-to-peer network architecture is given. The key concepts and properties of peer-to-peer systems are explained. It should provide a basic understanding of differences and advantages of the peer-to-peer network design.
 
-But in conventional P2P networks neither the membership in the network nor the stored or requested content is concealed. Since the demand for privacy and anonymity preserving communication channels has risen, some P2P concepts with respect to these needs have emerged. In such requirement needing environments like regime critical or whistle blowing communities it is essential that the membership in such a network and even more importantly the activities in it are kept secret.
+\subsection{From classical client-server architecture to distributed networks}
 
-This includes the untracability of both the requester and the publisher of files and the location of files in the network. Even the meta data of files like the file size have to be protected since they may allow conclusions which content is requested. P2P networks respecting these requirements are called darknets.
+The internet emerged from several military and sience research networks, with ARPANET as the most commonly known of them. It was planed and designed as a decentralized telecomunication network resiliant to outages. Although its resiliance on a network level, most its services have still a centralized structure. On failure not the whole network will fail, but a service, as a website like \emph{www.tu-darmstadt.de} or its email system, can come unavailable easily.
 
-Therefor darknets are P2P overlays in which participants connects and communicates only to others they have some trust relation with. Nodes do not pass to whom they are connected to. This leads to only a minimum number of trusted participants knowing of ones membership in a darknet. 
+This originates from the in most protocols and services used client-server architecture. The clients tries to find a single server to send its request to. The server processes the request and sends the response back. If in the time between the server is chosen by the client and it sends the response the server fails, the reqeust fails too. There are several methods in protocol and network design to prevent such failures.
 
-Requests for storing, searching and receiving files are forwarded to other nodes but are modified to look as they come form one self. Same is done accordingly with responses, or, more general, to all messages. Thereby no node on such a chain of forwarding nodes can tell if a message originates from the node it received it from or any node beyond it. Any data distributed in the network is chunked in same-sized parts which are addressed and distributed individually. Furthermore as they are encrypted no node storing or forwarding them knows what files they contain.
+The basic approach is to devide the responsipilities in different independant domains. For example an email server is not responsible for all the emails in the world but only for those of one (or more) domains. Note that such a domain does not necessarily mean a domain name in the DNS system but can be an arbitrary domain like a company, an university or just a group of people.
+
+The next level of reduction of responsibility is to reduce what a single component is responsible for. Avoidance of single-point-of-failures, redundancy, load balancing where single requests are distributed to different servers are the common ones. However, all the approaches on this level scale very badly and therefor are highly expensive when achieving good fault tolerance or dealing with large amount of clients or reqeuests.
+
+Taking the splitting of responsibility to the maximum, every one is responsible for everything. This is basicaly the idea behind the peer-to-peer architecture in which every client is simultaniously a server. Of course not every client is responsible for everything in a network but each of them is participating in the service of the network, serving a fraction of the serving while for each fraction there are multiple servers. Since there is commonly no distinction between clients and servers a participant is called a node or peer.
+
+\subsection{The rise of P2P systems and todays usage}
+
+With the Domain Name System (DNS) and the Simple Mail Transfer Protocol (SMTP) some parts of the peer-to-peer design are already used since early days of the internet. More than that, P2P ideas were researched, developed and used in smaller scale for a long time. But it took until the late '90 and file sharing networks as Napster to popularize the P2P concept.
+
+This high usage for unauthorized file sharing of copyright protected material led to a infamous image. Under this the term P2P suffered for quite a time. Just in the past few years several larger companys began to utilize peer-to-peer systems, e.g. for delivering larger sets of data to a huge amount of customers.
+
+Today P2P systems are more and more used as a resiliant and scalable basis for communication, content delivery, and distributed storage, both legaly in public and unclear or even illegaly in twilight.
+
+\subsection{What a peer-to-peer overlay is}
+
+Of course not every node in the internet or another network participates in a P2P network. And not every two peers in a P2P network have to be directly connected and be able to communicate with each other. Therefor the P2P network graph is only a subset of the underlaying topology graph.
+
+Commonly a seperate addressing scheme for communication in such a network is used. In most cases a node is identified by just a sequence of bits, its ID. It is usually represented as a number in decimal or hexadecimal form. All possible IDs together are called the address or ID space and its size vary from network to network but is constant within one network.
+
+Both these propertys together form a more or less idependant network put on top of the underlaying one. It is then called a peer-to-peer overlay.
 
 
-\section{Implications of darknet characteristics}
+\section{Darknets: privacy preserving P2P overlays}
 
-In summary the membership of a node in a darknet is only known to its trusted peers, the files stored on a node are unknown to and unreadable by this node, and messages can originate from either the node they are received from or any node beyond it.
+In the last section we gave a brief overview of the key aspects of peer-to-peer systems and their envolvement over time. As any tool and technology, P2P systems have advantages and disadvantages and can be used for good or evil. Now we will discuss how the demand for privacy led to a more specialized class of peer-to-peer networks, the darknets.
+
+\subsection{Consequences of decentralisation}
+
+As discussed before the essence of P2P systems are their decentralisation. Not a single server but virtually every pariticpant of the system is responsible for serving requests which results in a high failure resiliance. What is a valuable property for its users can be problematic if trying to stop the service of a network. Preventing the unauthorized distribution of copyright protected material just as repressed communication is rendered nearly impossible. \todo{weiter ausführen? eventuell 2 absätze, sonst mit nächster subsection zusammen legen?}
+
+\subsection{The demand for privacy preservation}
+
+The distribution of objectable information can therefor not effectivly be prevented but the nodes could still be prosecuted afterwards if their membership and identity is revealed. In the used file sharing networks the communication between two nodes is indeed encrypted and not readable buy outstanders, but in order to exchange infromation the nodes have to connect to each other. Therefor their identity, in the internet commonly the used IP address at a given time, is revealed to each other.
+
+This is, however, not limited to file sharing networks. In every regime undesired communication could be somewhat pushishable, regardless of it is a whisle blower in a missbehaving company or regime critics under a dictatorship. \todo{erklärung/begründung warum trotz dual use solche technologie entwickelt und bereit gestellt werden sollte}
+
+For those oppressed environments a more privacy preserving class of peer-to-peer networks has evolved, the darknets. In the following the main differences to classical P2P systems are touched while they will be explained in detail in chapter 3.
+
+
+\subsection{Trust relation base membership and membership consealment}
+
+Exchanging any kind of information on the internet leads to the necessaty of directly connecting of at least two participants. As explained, this leads to revealing the identity of those in the underlaying network to each other. To overcome the impact of this privacy relevant information disclosure, connections are only established between mutual known and trusted parties.
+
+Additionally to communicating with kown and trusted peers only, no information about which peers a node is connected to are passed. On compromisation only the identiy of directly connected peers are affected. Anyway, no node can be held responsible for contact to other nodes, since not even participants know to which peers a node is connected to.
+
+\subsection{Forwarding requests and hop-by-hop anonymity}
+
+But since only communicating with trusted peers would end in a very limited reachability, communication between not directly connected nodes has to be forwarded on some way. Thereby the identity in the underlaying network and information about the topology, who is connected to whom, have to be concealed.
+
+To achieve this, forwarded messages are modified to originate from the forwarding node itself. Returning answers are modified accordingly and are passed back to the source of the original request. As this is done on every node, the identity of the origin of a message is preserved and no information about the topology is reveald.
+
+
+
+\section{Darknet characteristics and resulting challenges}
+
+The methodical differences of darknets to classical P2P networks were explained. Now follows, althoug already roughly touched, a discussion of the arising characteristics and the thereby resulting challenges for the practical use of darknets.
+
+\subsection{Hidden Topology}
+\todo{mehr...}
+
+In summary the membership of a node in a darknet is only known to its trusted peers and messages can originate from either the node they are received from or any node beyond it.
+
+\subsection{Difficulties for routing ...}
 
 This high rate of protection of privacy relevant information comes with numerous difficulties in designing and evaluating simultaneously resilient and salable darknets. Messages whose destination is not within a nodes neighbors have to be forwarded to some nodes in between. In conventional networks the next node can be chosen on the basis of topology information about the network, e.g. in form of a classical routing table or structured overlays in P2P systems.
 
 Though any topology information about the network is confidential, they are not distributed and collected by the nodes and not available for deciding to which node a message is given next. This holds as well for meta topology information such as the origin of a message and therefore the direction the according node lies within.
 
-\section{metrices for routing (specially in darknets) evaluation}
 
-The same difficulties arise for measuring any quality in a darknet, for example for evaluation and comparison of decisions while development. In general several metrics exist for measurement and comparison of routing algorithms. But since we utilize an abstract model of darknets we consider basic metrics as they apply to all kind of networks.
+\subsection{... and evaluation}
+\todo{mehr...}
+The same difficulties arise for measuring any quality in a darknet, for example for evaluation and comparison of decisions while development.
 
-\begin{itemize}
-\item The simplest metric is the \emph{path length}, or \emph{hop count}, the amount of hops a packet has to be forwarded on until it reaches its destination. It is an important factor of delays in communication and also affects the bandwidth between nodes. The shorter the chosen path is, the faster the communication is and the less the network has to be utilized. The path length, and its average and maximum in a network, are the most commonly used metrics to compare routing.
 
-\item The \emph{overhead} measures how much resources have to be used to transmit the actual information. It can be measured as the \emph{overhead messages ratio} or the overhead bandwidth ratio and is a grade for the efficiency of a system.
+\section{Metrices for routing evaluation}
 
-\item In one simulation, we will inspect the count of failed return paths. Since a response is sent back the path it came from, it has a fatal impact if a node on that path fails. It can show a upper bound of reliability of a system if it relies on this method.
 
-\item \todo{more?}
-\end{itemize}
 
-\section{Available measurement methods for darknets}
+\section{Evaluation methods for networks}
 
-For evaluating distributed systems like P2P overlays, and darknets in particular, there are four different approaches.
+For evaluating distributed systems like P2P overlays, and darknets in particular, there are four different approaches. \todo{...mehr}
 
-The most theoretical one is to build a \emph{analyical model} and derive formulas for the relevant values from it. This is quite flexible for varying parameters and very scalable and fast. But on the other hand the derivation of formulas can be challenging and small changes in the model or algorithm can render most of the work inappropriate. With analytical models upper and/or lower bounds can be estimated, but real world performance can depend on protocol details hard do model.
+\subsection{Full blown test environment or mathematical model evalution?}
 
-A more realistic approach is to \emph{simulate} a client based on the model. The abstract relevant behavior is implemented in the simulation environment. Large networks and complex algorithms can be simulated while implementation is strait forward and easier then building a proper formula. However, the algorithms must soundly be implemented and simulation can take much computation time and memory depending on the model and the network to be simulated.
+The original software can be tested, almost or completely unmodified, in a \emph{testbed}. This is used to test the functionality itself but scales very badly for multiple nodes and even more for larger networks. In particular for evaluating darknets, information gathering methods have to be added since this is against their normal usecase. \todo{vor und nachteile ausarbeiten}
 
-Commonly less implementation effort is needed when \emph{emulating} a network. This is commonly done by removing all irrelevant and independent parts of the original software and run many instances of such slimed client. Main benefit is that no new software has to be written that can be faulty or not sound to the original, but in common the client has still much overhead e.g. for network communication. This consummates much more resources in time and memory than a simulation.
+A completely different approach is to build a \emph{analyical model} and derive formulas for the relevant values from it. This is quite flexible for varying parameters and very scalable and fast. But on the other hand the derivation of formulas can be challenging and small changes in the model or algorithm can render most of the work inappropriate. With analytical models upper and/or lower bounds can be estimated, but real world performance can depend on protocol details and other factors hard do model.
 
-The original software can as well be tested, almost or completely unmodified, in a \emph{testbed}. This is used to test the functionality itself but scales very badly for multiple nodes or even larger networks. Particularly for evaluating darknets information gathering methods have to be added since this is against its normal use.
+\subsection{Inbetween: emulation and simulation}
+
+By removing all irrelevant and independent parts of the original software and run many instances of such slimed clients a network can be \emph{emulated}. Main benefit is that no new software has to be written that can be faulty or not sound to the original one. While very little new implementation effort is required, in common the client has still much overhead e.g. for network communication.
+
+This consummes much more resources in time and memory than a \emph{simulation}, whereby the abstract, relevant behavior is implemented in a simulation environment. Large networks and complex algorithms can be simulated. Implementation is strait forward and can be easier then building a proper formula. However, the algorithms must soundly be implemented and simulation can take much computation time and memory depending on the model and the network to be simulated.
+
+
+\subsection{Applicability on darknets}
+
+
 
 \section{Survey of previous darknets}
 

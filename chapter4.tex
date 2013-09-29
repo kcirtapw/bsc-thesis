@@ -1,8 +1,18 @@
 \chapter{Implementation}
 
-\section{What is OMNeT++ and why we chose it}
+\section{The simulation library and framework OMNeT++}
 
-OMNeT++ is an event based simulation library and framework written in C++. It is modular and extensible and primarily used to simulate networks not only limited to telecomunication networks. 
+\subsection{Alternatives and why we cose OMNeT++}
+
+\subsection{What is OMNeT++}
+
+OMNeT++ is an simulation library and framework written in C++. It is modular and extensible and primarily used to simulate networks not only limited to telecomunication networks. The simulation 
+
+\subsection{The simulation process}
+
+\subsection{Measurement collection}
+
+\subsection{INET: The communication networks simulation package}
 
 \section{Implementaion of the static model}
 
@@ -10,7 +20,12 @@ OMNeT++ is an event based simulation library and framework written in C++. It is
 
 \section{Churn based lifetime model}
 If a node goes offline it has to be detected by its peers. Therefor, an acknowledge mechanism is needed. Basically a acknowledge message (short: ACK) is send back on receieving a message. If such an ACK is not received within a certain amount of time, the message can be resent up to a selectable number of times. If no ACK is received after that, the peer is no longer considered the be online and connected.
+
+
+
 \section{two simple example routing models}
+
+
 \subsection{randomwalk}
 \begin{itemize}
 \item            with n-degree fanout
