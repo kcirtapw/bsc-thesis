@@ -15,9 +15,13 @@ The next level of reduction of responsibility is to reduce what a single compone
 
 Taking the splitting of responsibility to the maximum, every one is responsible for everything. This is basicaly the idea behind the peer-to-peer architecture in which every client is simultaniously a server. Of course not every client is responsible for everything in a network but each of them is participating in the service of the network, serving a fraction of the serving while for each fraction there are multiple servers. Since there is commonly no distinction between clients and servers a participant is called a node or peer.
 
-\subsection{P2P Overlays}
+\subsection{Peer-to-peer overlays}
 
+Of course not every node in the internet or another network participates in a P2P network. And not every two peers in a P2P network have to be directly connected and be able to communicate with each other. Therefor the P2P network graph is only a subset of the underlaying topology graph.
 
+Commonly a seperate addressing scheme for communication in such a network is used. In most cases a node is identified by just a sequence of bits, its ID. It is usually represented as a number in decimal or hexadecimal form. All possible IDs together are called the address or ID space and its size vary from network to network but is constant within one network.
+
+Both these propertys together form a more or less idependant network put on top of the underlaying one. This is then called a P2P overlay.
 
 \section{Darknets: privacy preserving P2P overlays}
 
