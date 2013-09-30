@@ -2,7 +2,15 @@
 
 \section{The simulation library and framework OMNeT++}
 
-\subsection{Alternatives and why we cose OMNeT++}
+As statet above, network simulation is an both effective and efficient method to evaluate network performance, but an underrepresented one for darknets. This section will cover the used simulation framework OMNeT++.
+
+\subsection{Network simulators and why we cose OMNeT++}
+
+In chapter 2.5 we stated that the benefit in using simulation for routing evaluation is the reduced time and memory usage compared to emulation or a testbed. This would comes in exchange for a huge implementation effort, since a simulator, the client model and a network is needed. Fortunately simulatiors and frameworks exist already.
+
+Besides some general purpose simulatiors and many specialized ones, there are even some for network analysation and evaluation. Widely used open source products are ns2/ns3 and OMNeT++. Additionally to saving the implementation of a simulator, using a commonly adopted framework gains a better comparability and to other results and respectability of the results by other researchers.
+
+We chose OMNeT++ for its extendability, modular design and wide varity of already implemented telecomunication protocols shipped with the INET package for example.
 
 \subsection{What is OMNeT++}
 
@@ -17,6 +25,9 @@ OMNeT++ is an simulation library and framework written in C++. It is modular and
 \section{Implementaion of the static model}
 
 
+\section{Network generation}
+
+generating the network .ned file and simulation configuration from a given network graph
 
 \section{Churn based lifetime model}
 If a node goes offline it has to be detected by its peers. Therefor, an acknowledge mechanism is needed. Basically a acknowledge message (short: ACK) is send back on receieving a message. If such an ACK is not received within a certain amount of time, the message can be resent up to a selectable number of times. If no ACK is received after that, the peer is no longer considered the be online and connected.
