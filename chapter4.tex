@@ -36,6 +36,8 @@ With this method the modules just have to emit a signal of a declared type with 
 
 \subsection{INET: The communication networks simulation package}
 
+Since OMNeT++ is a general purpose network simulation framework not limited to a specific type of network, it contains no concrete network models. These are provided by additional packages. For communication networks, like the internet, this is the INET package. It contains models for a great varity of components the internet and similar networks consist off. Several wireless and wired protocoals are covered and reach from ethernet up to application protocols like HTTP.
+For the darknet simulation we use the INET package to provide modular and realistic underlaying protocols. Depending on the level of realism to be achieved, the underlaying topology can be built as a single switch network or a whole internet like network with mulitple routers.
 
 \section{Implementaion of the static model}
 
