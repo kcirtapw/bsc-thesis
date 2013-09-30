@@ -14,13 +14,22 @@ We chose OMNeT++ for its extendability, modular design and wide varity of alread
 
 \subsection{What is OMNeT++}
 
-OMNeT++ is an simulation library and framework written in C++. It is modular and extensible and primarily used to simulate networks not only limited to telecomunication networks. The simulation 
+OMNeT++ is an simulation library and framework written in C++. It is modular and extensible and primarily used to simulate networks not only limited to telecomunication networks. Models, the basic entity, are written in C++ and can be assebled to larger models. Those compound models, up to the whole network, are described with a higher level language, the NEtwork Description language (NED).
+
+Models, as well as the parts of a compound model, communicate with each other via messages. Messages are handed between input and output ports, in terms of OMNeT++ called gates, of models. A model can send messages on a gate and is informed if a messages arives on one. Messages are also used internaly of a model to trigger timed events. Gates can be connected to gates of the composing models directly so messages can be passed "up" and "down" within a compound model. Models on the same layer can be connected via channels, which can have corresponding properties to indicate the characteristics of a communication channel like the bandwith, the delay or even an error rate.
+
+With the NED a network of modules and interconnecting channels can be composed. Along with the models of such a network, the whole simulation is configured via an .ini file.
 
 \subsection{The simulation process}
+
+The models code is compiled together with the simulatior. The simulator is then executed and a network is build according to the .ini file and the specified .ned modules.
+
+After the initialisation and configuration of the nodes is done in the init phase, the main simulation phase begins. Triggered by 
 
 \subsection{Measurement collection}
 
 \subsection{INET: The communication networks simulation package}
+
 
 \section{Implementaion of the static model}
 
@@ -30,7 +39,7 @@ OMNeT++ is an simulation library and framework written in C++. It is modular and
 generating the network .ned file and simulation configuration from a given network graph
 
 \section{Churn based lifetime model}
-If a node goes offline it has to be detected by its peers. Therefor, an acknowledge mechanism is needed. Basically a acknowledge message (short: ACK) is send back on receieving a message. If such an ACK is not received within a certain amount of time, the message can be resent up to a selectable number of times. If no ACK is received after that, the peer is no longer considered the be online and connected.
+If a node goes offline, this has to be detected by its peers. Therefor, an acknowledge mechanism is needed. Basically a acknowledge message (short: ACK) is send back on receieving a message. If such an ACK is not received within a certain amount of time, the message can be resent up to a selectable number of times. If no ACK is received after that, the peer is no longer considered the be online and connected.
 
 
 
