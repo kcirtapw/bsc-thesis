@@ -2,38 +2,64 @@
 
 \section{The simulation library and framework OMNeT++}
 
-\subsection{Alternatives and why we cose OMNeT++}
+As statet above, network simulation is an both effective and efficient method to evaluate network performance, but an underrepresented one for darknets. This section will cover the used simulation framework OMNeT++.
+
+\subsection{Network simulators and why we cose OMNeT++}
+
+In chapter 2.5 we stated that the benefit in using simulation for routing evaluation is the reduced time and memory usage compared to emulation or a testbed. This would comes in exchange for a huge implementation effort, since a simulator, the client model and a network is needed. Fortunately simulatiors and frameworks exist already.
+
+Besides some general purpose simulatiors and many specialized ones, there are even some for network analysation and evaluation. Widely used open source products are ns2/ns3 and OMNeT++. Additionally to saving the implementation of a simulator, using a commonly adopted framework gains a better comparability and to other results and respectability of the results by other researchers.
+
+We chose OMNeT++ for its extendability, modular design and wide varity of already implemented telecomunication protocols shipped with the INET package for example.
 
 \subsection{What is OMNeT++}
 
-OMNeT++ is an simulation library and framework written in C++. It is modular and extensible and primarily used to simulate networks not only limited to telecomunication networks. The simulation 
+OMNeT++ is an simulation library and framework written in C++. It is modular and extensible and primarily used to simulate networks not only limited to telecomunication networks. Models, the basic entity, are written in C++ and can be assebled to larger models. Those compound models, up to the whole network, are described with a higher level language, the NEtwork Description language (NED).
+
+Models, as well as the parts of a compound model, communicate with each other via messages. Messages are handed between input and output ports, in terms of OMNeT++ called gates, of models. A model can send messages on a gate and is informed if a messages arives on one. Messages are also used internaly of a model to trigger scheduled events. Gates can be connected to gates of the composing models directly so messages can be passed "up" and "down" within a compound model. Models on the same layer can be connected via channels, which can have corresponding properties to indicate the characteristics of a communication channel like the bandwith, the delay or even an error rate.
+
+With the NED a network of modules and interconnecting channels can be composed. Along with the models of such a network, the whole simulation is configured via an .ini file.
 
 \subsection{The simulation process}
 
-\subsection{Measurement collection}
+The models code is compiled together with the simulatior. The simulator is then executed and a network is build according to the .ini file and the specified .ned modules.
+
+After the initialisation and configuration phase of the nodes is done, the main simulation phase begins. In this phase the actual simulation process takes place. Previously scheduled events are processed in the specified order and trigger modules to exchange messages. This phase ends when no more messages are scheduled or on exceeding a maximum simulation time and is followed by the finalisation phase.
+
+In the finalisation phase the most important task is to collect and eventually process measurements and statistics. Beside this, some modules need a proper clean up what is can be done in this phase.
+
+\subsection{Measurement recording}
+
+OMNeT++ provides two ways of recodring statistics. The traditional way was to calculate the values inside the modules and output them in in the finalisation phase in special vector or scalar objects. Because this required recompilation on even the simplest changes, like for example to record the minimum instead of the maximum of a value, recording by signals was introduced in OMNeT++ 4.1.
+
+With this method the modules just have to emit a signal of a declared type with an optional value. How these singals are recorded and processed can controled via the simulation configuration.
 
 \subsection{INET: The communication networks simulation package}
 
+Since OMNeT++ is a general purpose network simulation framework not limited to a specific type of network, it contains no concrete network models. These are provided by additional packages. For communication networks, like the internet, this is the INET package. It contains models for a great varity of components the internet and similar networks consist off. Several wireless and wired protocoals are covered and reach from ethernet up to application protocols like HTTP.
+
+For the darknet simulation we use the INET package to provide modular and realistic underlaying protocols. Depending on the level of realism to be achieved, the underlaying topology can be built as a single switch network or a whole internet like network with mulitple routers.
+
 \section{Implementaion of the static model}
 
+The model of a general darknet node is explained in chapter 3
 
+\section{Network generation}
+
+generating the network .ned file and simulation configuration from a given network graph
 
 \section{Churn based lifetime model}
-If a node goes offline it has to be detected by its peers. Therefor, an acknowledge mechanism is needed. Basically a acknowledge message (short: ACK) is send back on receieving a message. If such an ACK is not received within a certain amount of time, the message can be resent up to a selectable number of times. If no ACK is received after that, the peer is no longer considered the be online and connected.
+If a node goes offline, this has to be detected by its peers. Therefor, an acknowledge mechanism is needed. Basically a acknowledge message (short: ACK) is send back on receieving a message. If such an ACK is not received within a certain amount of time, the message can be resent up to a selectable number of times. If no ACK is received after that, the peer is no longer considered the be online and connected.
 
 
 
 \section{two simple example routing models}
 
-
 \subsection{randomwalk}
+
 \begin{itemize}
 \item            with n-degree fanout
 \item            very simple loop prevention
 \end{itemize}
+
 \subsection{flooding}
-
-\section{notes}
-kapite aus theoretischem model auf implementierung (bei kap.4.2) matchen?
-
-probleme vor denen wir standen/ zu erfuellende requirements: beschreiben wie metriken ausgewertet werden
