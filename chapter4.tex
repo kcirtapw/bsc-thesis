@@ -24,9 +24,15 @@ With the NED a network of modules and interconnecting channels can be composed. 
 
 The models code is compiled together with the simulatior. The simulator is then executed and a network is build according to the .ini file and the specified .ned modules.
 
-After the initialisation and configuration phase of the nodes is done, the main simulation phase begins. In this phase the actual simulation process takes place. Previously scheduled events are processed in the specified order and trigger modules to exchange messages. This phase ends when no more messages are scheduled or on exceeding a maximum simulation time.
+After the initialisation and configuration phase of the nodes is done, the main simulation phase begins. In this phase the actual simulation process takes place. Previously scheduled events are processed in the specified order and trigger modules to exchange messages. This phase ends when no more messages are scheduled or on exceeding a maximum simulation time and is followed by the finalisation phase.
 
-\subsection{Measurement collection}
+In the finalisation phase the most important task is to collect and eventually process measurements and statistics. Beside this, some modules need a proper clean up what is can be done in this phase.
+
+\subsection{Measurement recording}
+
+OMNeT++ provides two ways of recodring statistics. The traditional way was to calculate the values inside the modules and output them in in the finalisation phase in special vector or scalar objects. Because this required recompilation on even the simplest changes, like for example to record the minimum instead of the maximum of a value, recording by signals was introduced in OMNeT++ 4.1.
+
+With this method the modules just have to emit a signal of a declared type with an optional value. How these singals are recorded and processed can controled via the simulation configuration.
 
 \subsection{INET: The communication networks simulation package}
 
@@ -45,15 +51,11 @@ If a node goes offline, this has to be detected by its peers. Therefor, an ackno
 
 \section{two simple example routing models}
 
-
 \subsection{randomwalk}
+
 \begin{itemize}
 \item            with n-degree fanout
 \item            very simple loop prevention
 \end{itemize}
+
 \subsection{flooding}
-
-\section{notes}
-kapite aus theoretischem model auf implementierung (bei kap.4.2) matchen?
-
-probleme vor denen wir standen/ zu erfuellende requirements: beschreiben wie metriken ausgewertet werden
