@@ -42,7 +42,7 @@ For the darknet simulation we use the INET package to provide modular and realis
 
 \section{Implementaion of the basic model}
 
-As in any P2P Overlay an addressing scheme is needed for darknets as well. We chose a simple string representation for the nodes identification, the \emph{node ID}. Other addressing schemes can be mapped to strings if needed.
+As in any P2P Overlay an addressing scheme is needed for darknets as well. We chose a simple string representation for the nodes identification, the \emph{nodeID}. Other addressing schemes can be mapped to strings if needed.
 
 The \emph{DarknetBaseNode} class implements the general behaviour of a darknet node and the basic interaction with the simulation framework components. It is responsible for sending and handling recieved messages. \emph{Selfmessages}, used in OMNeT++ for notification and scheduling events are detected and dispatched to an overwritable method. This way, subclasses can easily use and extend this notification system. A simple implementation of sending messages to other nodes is implemented, including setting the source of the message to the node, calling the method that determines the nodes the message is send to and then sending the message to all these nodes. In the easiest case, a deriaved class has only to implement the method that chooses the next nodes to gain message sending functionality.
 
@@ -50,15 +50,20 @@ If no routing descision is needed, or possible, a simplier methoden \emph{sendDi
 
 The DarknetBaseNode class also basically manages the list of known & trusted peers and the list of connections to online peers. The first lists limits to which other nodes connections are allowed. The second one keeps track of those who are online, that is who are available to forwarded messages to, along with the address in the underlaying network.
 
-The second key property of darknets, the anonymized forwarding of messages for other nodes, is simply implemented as well. The source ID of messages that have to be forwarded are set to the node ones. The node ID from which the message was received is saved along with the \emph{request ID}. This request ID is used to determin to which node a response of a request is to be send to. This whole mechanism is only a simplistic implementation of the corresponding darknet characteristic and can be extended or overwritten with a more advanced algorythm by derived classes.
+The second key property of darknets, the anonymized forwarding of messages for other nodes, is simply implemented as well. The source ID of messages that have to be forwarded are set to the node ones. The nodeID from which the message was received is saved along with the \emph{request ID}. This request ID is used to determin to which node a response of a request is to be send to. This whole mechanism is only a simplistic implementation of the corresponding darknet characteristic and can be extended or overwritten with a more advanced algorythm by derived classes.
 
 As explained in the model description, we simplified the different reqeust and response types in different P2P networks possible to only one common request and an accoring response type. If further differentiation of the message types is needed, they can be implemented by extending the message class. How a node acts up on reception of such a message type can be defined in the \emph{handleIncomingMessage} method.
 
-\section{Network generation}
+\section{Trust relation and network generation}
 
-generating the network .ned file and simulation configuration from a given network graph
+Unlike as in a standard P2P overlay and modeled by existing P2P simulation frameworks as OverSim, a darknet node connects only to specific nodes. It is not possible to specify the (maximum) amount of nodes in the network and simply spawn or delete them on demand. Every node has to have a set of its trusted peers from the beginning.
+
+To handle even very large social graphs of several thousands of nodes we developed a python script to generate the network composition in a .ned file and the node and simulation configuration in an .ini file. The script takes the network graph as file, starting with the nodeID and followed by all its trusted peers seperated by a blank. A directed symetric graph is assumed, in which each directed edge between two nodes has a reversly directed edge specifying them mutiality of trust between those nodes. However this is not enforced and complexer scenarios with not necessarily mutual trust relations can be modeled.
+
+The network is set up with just a single router all nodes are connected to. To simulate complexer underlay network topologies, the script can be modified accordingly. Thereby it would be easily possible to simulate for example a split of a subset of the network by just putting some nodes on a different router and removing the channel between both routers during simulation.
 
 \section{Churn based lifetime model}
+
 If a node goes offline, this has to be detected by its peers. Therefor, an acknowledge mechanism is needed. Basically a acknowledge message (short: ACK) is send back on receieving a message. If such an ACK is not received within a certain amount of time, the message can be resent up to a selectable number of times. If no ACK is received after that, the peer is no longer considered the be online and connected.
 
 
