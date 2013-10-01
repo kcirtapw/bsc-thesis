@@ -52,7 +52,7 @@ If no routing descision is needed, or possible, a simplier methoden \emph{sendDi
 
 The DarknetBaseNode class also basically manages the list of known & trusted peers and the list of connections to online peers. The first lists limits to which other nodes connections are allowed. The second one keeps track of those who are online, that is who are available to forwarded messages to, along with the address in the underlaying network.
 
-The second key property of darknets, the anonymized forwarding of messages for other nodes, is simply implemented as well. The source ID of messages that have to be forwarded are set to the node ones. The nodeID from which the message was received is saved along with the \emph{request ID}. This request ID is used to determin to which node a response of a request is to be send to. This whole mechanism is only a simplistic implementation of the corresponding darknet characteristic and can be extended or overwritten with a more advanced algorithm by derived classes.
+The second key property of darknets, the anonymized forwarding of messages for other nodes, is simply implemented as well. The source nodeID of messages that have to be forwarded are set to the nodes one. The nodeID from which the message was received is saved along with the \emph{request ID}. Responses contain the requests ID they are the response for. Routing the resonse back the request came from can be called \emph{backrouting}. The request ID can be used, while backrouting, to determin to which node a response of a request is to be send to. This whole mechanism is only a simplistic implementation of the corresponding darknet characteristic and can be extended or overwritten with a more advanced algorithm by derived classes.
 
 As explained in the model description, we simplified the different reqeust and response types in different P2P networks possible to only one common request and an accoring response type. If further differentiation of the message types is needed, they can be implemented by extending the message class. How a node acts up on reception of such a message type can be defined in the \emph{handleIncomingMessage} method.
 
@@ -74,13 +74,16 @@ If a node comes online, it connects to its peers. This incomming connection esta
 
 \section{two simple example routing models}
 
-As a demonstration of the simplicity of extending the model and implement a darknet routing algorithm, we implemented two different, yet very simple routing algorithms applicatable to darknets. The first one is \emph{randomwalk} routing in which a message travels on a randomly chosen path through a graph. In the second one, called \emph{flooding}, a message is forwarded to all connected peers a node has. Both perform miserable compared to todays commonly used routing algorithms, but are both simple to implement and to follow, and are well researched.
+As a demonstration of the simplicity of extending the model and implement a darknet routing algorithm, we implemented two different, yet very simple routing algorithms applicatable to darknets. The first one is \emph{random walk} routing in which a message travels on a randomly chosen path through a graph. In the second one, called \emph{flooding}, a message is forwarded to all connected peers a node has. Both perform miserable compared to todays commonly used routing algorithms, but are both simple to implement and to follow, and are well researched.
 
 \subsection{randomwalk}
 
-\begin{itemize}
-\item            with n-degree fanout
-\item            very simple loop prevention
-\end{itemize}
+A ``random walk'' over a graph is a randomly chosen path between two vertices. These paths are commonly far away from optimum and there are basically no further constrains, even loops could be allowed. In an decentralized environment, these paths can of course not be selected beforehand, but every node just pics the next node from its available peers randomly. Basically this is all needed to implement this routing, the \emph{findNextHop} method simply returns one randomly choosen entry of the ``connected'' list.
+
+A simple optimisation, which would virtually allways be used in pratice, comes at no cost: a simple loop prevention on the backrouting of the response. The node only saves the source nodeID of a request, the first time it sees this reqeust. Although, if requiered for the soundness of a model, this can still be implemented, depending on the conrete constrains of the model.
+
+Another extension to the simplest random walk model was choosen to be investigated: the effect of multiple started requests on the average legth of found paths. The initial requesting node sends multiple requests which could all take different paths. Only the first of those requests ariving at the destination node is responded to. For this the nodes has to save the ID of reqeuests it already served.
 
 \subsection{flooding}
+
+
