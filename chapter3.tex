@@ -19,6 +19,8 @@ This simple model is static, all nodes are always online and a failing node is n
 
 \section{Churn model extension with bootstrapping and offline detection (dynamic)}
 
+The earlier implemented static model of all nodes being online during the complete simulation run is very easy and gives already chance to investigate large parts of a darknets behavior. However, it is not very realistic.
+
 To take into account the posibilitie of nodes shutting down, having connection problems or failing otherwise, the model is extended by a churn based lifetime model. It gives the nodes a probabilistic lifetime, so not all nodes are online in the begining, but they bootstrap into the network. They have to establish a connection to their peers.
 
 Nodes online/offline state can change during the simulation, so the peers of this node have to be informed. As this simulator concentrates only on the routing algorythm we are not concerned how a node would detect a change of state of one of its peers. The simulator notifies all peers of a node of the change. In the real world something like an TCP-like acknowledgment method would be used. \todo{change code: model it by offline/online notification from simulation environment}
