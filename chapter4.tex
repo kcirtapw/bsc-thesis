@@ -78,7 +78,7 @@ If a node comes online, it connects to its peers. This incomming connection esta
 
 As a demonstration of the simplicity of extending the model and implement a darknet routing algorithm, we implemented two different, yet very simple routing algorithms applicatable to darknets. The first one is \emph{random walk} routing in which a message travels on a randomly chosen path through a graph. In the second one, called \emph{flooding}, a message is forwarded to all connected peers a node has. Both perform miserable compared to todays commonly used routing algorithms, but are both simple to implement and to follow, and are well researched.
 
-\subsection{randomwalk}
+\subsection{The random walk algorithm}
 
 A ``random walk'' over a graph is a randomly chosen path between two vertices. These paths are commonly far away from optimum and there are basically no further constrains, even loops could be allowed. In an decentralized environment, these paths can of course not be selected beforehand, but every node just pics the next node from its available peers randomly. Basically this is all needed to implement this routing, the \emph{findNextHop} method simply returns one randomly choosen entry of the ``connected'' list. Depending on the size of the network these paths will not hit the destination since the message exceedes its time to life.
 
@@ -86,6 +86,6 @@ A simple optimisation, which would virtually allways be used in pratice, comes a
 
 Another extension to the simplest random walk model was choosen to be investigated: the effect of multiple started requests on the average legth of found paths. The initial requesting node sends multiple requests which could all take different paths. Only the first of those requests ariving at the destination node is responded to. For this the nodes has to save the ID of reqeuests it already served.
 
-\subsection{flooding}
+\subsection{Floody routing}
 
 The second implemented algorithm is flooding in which a message is forwarded to every available peer in the ``connected'' list. This is done just once for the first time a message is recieved by a node. This way, flooding can allways find the shortest path between two nodes. The disadvantage is a heavy load on the network since a message would be forwarded to every node in the network at least once, most nodes even would get the message multiple times from many of their peers. To limit the impact on the networks load, a much smaller TTL is used compared to randomwalk, and therefor only nearby nodes will be reachable.
