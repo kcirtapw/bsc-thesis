@@ -1,10 +1,8 @@
 \chapter{Implementation}
 
-In this chapter we describe the used simulation framework OMNeT++, its components and their purpose, the implementation of our model as a basic darknet node and its extension of possibly offline nodes.
+As statet above, network simulation is an both effective and efficient method to evaluate network performance, but an underrepresented one for darknets. In this chapter we describe the used discrete event based simulation framework OMNeT++, its components and their purpose, the implementation of our model as a basic darknet node and its extension of possibly offline nodes.
 
 \section{The simulation library and framework OMNeT++}
-
-As statet above, network simulation is an both effective and efficient method to evaluate network performance, but an underrepresented one for darknets. This section will cover the used simulation framework OMNeT++.
 
 \subsection{Network simulators and why we cose OMNeT++}
 
@@ -12,15 +10,17 @@ In chapter 2.5 we stated that the benefit in using simulation for routing evalua
 
 Besides some general purpose simulatiors and many specialized ones, there are even some for network analysation and evaluation. Widely used open source products are ns2/ns3 and OMNeT++. Additionally to saving the implementation of a simulator, using a commonly adopted framework gains a better comparability and to other results and respectability of the results by other researchers.
 
-We chose OMNeT++ for its extendability, modular design and wide varity of already implemented telecomunication protocols shipped with the INET package for example.
+We decided against ns3 as it is way more complex and overloaded for our purpose, aiming for a high scalability. Instead we chose OMNeT++ for its extendability, modular design and wide varity of already implemented telecomunication protocols shipped with the INET package for example.
 
 \subsection{What is OMNeT++}
 
-OMNeT++ is an simulation library and framework written in C++. It is modular and extensible and primarily used to simulate networks not only limited to telecomunication networks. Models, the basic entity, are written in C++ and can be assebled to larger models. Those compound models, up to the whole network, are described with a higher level language, the NEtwork Description language (NED).
+OMNeT++ is an discrete event based simulation library and framework written in C++. It is modular and extensible and primarily used to simulate networks not only limited to telecomunication networks. Models, the basic entity, are written in C++ and can be assebled to larger models. Those compound models, up to the whole network, are described with a higher level language, the NEtwork Description language (NED). 
 
 Models, as well as the parts of a compound model, communicate with each other via messages. Messages are handed between input and output ports, in terms of OMNeT++ called gates, of models. A model can send messages on a gate and is informed if a messages arives on one. Messages are also used internaly of a model to trigger scheduled events. Gates can be connected to gates of the composing models directly so messages can be passed ``up'' and ``down'' within a compound model. Models on the same layer can be connected via channels, which can have corresponding properties to indicate the characteristics of a communication channel like the bandwith, the delay or even an error rate.
 
 With the NED a network of modules and interconnecting channels can be composed. Along with the models of such a network, the whole simulation is configured via an .ini file.
+
+The simulation is processing a sequence of scheduled events which can call actions in the models, which can then trigger scheduling more events. The composition of a network to be simulated and the simulation process is described in more detail in the following.
 
 \subsection{The simulation process}
 
@@ -66,9 +66,11 @@ The network is set up with just a single router all nodes are connected to. To s
 
 \section{Churn based lifetime model}
 
-If a node goes offline, this has to be detected by its peers. Therefor, an acknowledge mechanism is needed. Basically a acknowledge message (short: ACK) is send back on receieving a message. If such an ACK is not received within a certain amount of time, the message can be resent up to a selectable number of times. If no ACK is received after that, the peer is no longer considered the be online and connected.
+The so far implemented static model lacks the capability of modeling nodes that go online or offline during the simulation. The model with a node lifetime adds this feature. In the implementation, a way has to be built in, that nodes can detect or get informed a changed state of one of their peers.
 
+We decided to implement an acknowledge mechanism. Basically a acknowledge message (short: ACK) is send back on receieving a message. If such an ACK is not received within a certain amount of time, the message can be resent up to a selectable number of times. If no ACK is received after that, the peer is no longer considered the be online and connected. No further messages are send to this node.
 
+If a node comes online, it connects to its peers. This incomming connection establishment request can be used to trigger such a request in reverse direction by a node itself. As these reqeusts do not rely on the list of connected peers, this can be used all the time. This process is applicable as well for rejoining nodes during the main simulation phase.
 
 \section{two simple example routing models}
 
