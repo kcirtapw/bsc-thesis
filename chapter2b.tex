@@ -1,0 +1,40 @@
+\section{Metrices for routing evaluation}
+
+As touched before, to develop or improve a network, metrices to measure its quality and performance are 
+
+\begin{itemize}
+\item The simplest metric is the \emph{path length}, or \emph{hop count}, the amount of hops a packet has to be forwarded on until it reaches its destination. It is an important factor of delays in communication and also affects the bandwidth between nodes. The shorter the chosen path is, the faster the communication is and the less the network has to be utilized. The path length, and its average and maximum in a network, are the most commonly used metrics to compare routing.
+
+\item The \emph{overhead} measures how much resources have to be used to transmit the actual information. It can be measured as the \emph{overhead messages ratio} or the overhead bandwidth ratio and is a grade for the efficiency of a system.
+
+\item In one simulation, we will inspect the count of failed return paths. Since a response is sent back the path it came from, it has a fatal impact if a node on that path fails. It can show a upper bound of reliability of a system if it relies on this method.
+
+\item \todo{more?}
+\end{itemize}
+
+\section{Evaluation methods for networks}
+\label{sec:evaluationmethods}
+
+For evaluating distributed systems like P2P overlays, and darknets in particular, there are four different approaches. \todo{...mehr}
+
+\subsection{Full blown test environment or mathematical model evalution?}
+
+The original software can be tested, almost or completely unmodified, in a \emph{testbed}. This is used to test the functionality itself but scales very badly for multiple nodes and even more for larger networks, as it is time and resource intensive and therefor expensive to setup multiple nodes. In particular for evaluating darknets, information gathering methods have to be added since this is against their normal usecase.
+
+A completely different approach is to build a \emph{analyical model} and derive formulas for the relevant values from it. This is quite flexible for varying parameters and very scalable and fast. But on the other hand the derivation of formulas can be challenging and small changes in the model or algorithm can render most of the work inappropriate. With analytical models upper and/or lower bounds can be estimated, but real world performance can depend on protocol details and other factors hard do model.
+
+\subsection{Inbetween: emulation and simulation}
+
+By removing all irrelevant and independent parts of the original software and run many instances of such slimed clients a network can be \emph{emulated}. Main benefit is that no new software has to be written that can be faulty or not sound to the original one. While very little new implementation effort is required, in common the client still has unnecessary components e.g. for network communication. Certainly, this is not applicable to every software, as they may suffer from inflexible software design where the routing algorithms components are not easily seperable from the rest.
+
+This consummes eventually much more resources in time and memory than a \emph{simulation}, whereby the abstract, relevant behavior is implemented in a simulation environment. Large networks and complex algorithms can be simulated. Implementation is straight forward and can be easier then building a proper formula. However, the algorithms must soundly be implemented and simulation can take much computation time and memory depending on the model and the network to be simulated.
+
+
+\subsection{Applicability on darknets}
+
+In principle all of the discussed evaluation methods are applicatable, each with a different effort needed. The most work has to be done befor and during using a test environment with a not or only minimaly changed client. Either the properties of privacy and anonimity has to be abandoned, if a existing network is extended to collect statistics, or a expensive testbed has to be build. The same holds eased for an emulation. An analytical model, as the other extrema, suffers from of either a lack of realism or a hughe amount in building up a proper and sound model.
+
+While concentrating solely on the problems of routing in a darknet, a simulation based approach is the best method. Relativly easy implementation of routing algorithms, the high flexibility and scalabilty compared with a good accuracy and soundness, make this a powerfull way of researching and developing darknets.
+
+\section{Survey of previous darknets}
+
