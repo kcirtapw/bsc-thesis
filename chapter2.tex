@@ -48,24 +48,25 @@ The distribution of objectonable information can therefor not be effectivly prev
 
 This is, not limited to file sharing networks. Contrary to content delivery networks, any regime undesired communication can be somewhat pushishable. This applys to mancy cases, for example a whisle blower in a missbehaving company or regime critics under a dictatorship. For an free society the freedom of speach and the ability to inform oneself is important. Therefor it is essential to be able to communicate whithout surveilliance and obstraction.
 
-For those oppressed environments a more privacy preserving class of peer-to-peer networks has evolved, the darknets. In the following section the main differences to classical P2P systems are briefly noted while they get explained in detail in chapter 3.
 
 
 \subsection{Key concepts of darknets}
 
-Exchanging any kind of information on the internet leads to the necessaty of directly connecting of at least two participants. As explained, this leads to revealing the identity of those in the underlying network to each other. To overcome the impact of this privacy relevant information disclosure, connections are only established between mutual known and trusted parties.
+For those oppressed environments a more privacy preserving class of peer-to-peer networks has evolved, the darknets. In the following section the main differences to classical P2P systems are briefly noted while they get explained in detail in chapter 3.
+
+Exchanging any kind of information on the internet leads to the necessaty of directly connecting of at least two participants. As explained, this leads to revealing the identity of those in the underlying network to each other. To overcome the impact of this privacy relevant information disclosure, connections are only established between mutually known and trusted parties.
 
 Additionally to communicating with kown and trusted peers only, no information about which peers a node is connected to are passed. On compromisation only the identiy of directly connected peers are affected. Anyway, no node can be held responsible for contact to other nodes, since not even participants know to which peers a node is connected to.
 
-But since only communicating with trusted peers would end in a very limited reachability, communication between not directly connected nodes has to be forwarded on some way. Thereby the identity in the underlying network and information about the topology, who is connected to whom, have to be concealed.
+But since only communicating with trusted peers would end in a very limited reachability, communication between not directly connected nodes has to be forwarded on some way. To do so the identity in the underlying network and information about the topology, who is connected to whom, have to be concealed.
 
-To achieve this, forwarded messages are modified to originate from the forwarding node itself. Returning answers are modified accordingly and are passed back to the source of the original request. As this is done on every node, the identity of the origin of a message is preserved and no information about the topology is reveald.
+To achieve this, forwarded messages are modified to originate from the forwarding node itself. Returning answers are modified accordingly and are passed back to the source of the original request. \todo{grafik die das erläutert?} As this is done on every node, the identity of the origin of a message is preserved and no information about the topology is reveald.
 
 
 
 \section{Darknet characteristics and resulting challenges}
 
-The methodical differences of darknets to classical P2P networks were explained. Now follows, althoug already roughly touched, a discussion of the arising characteristics and the thereby resulting challenges for the practical use of darknets.
+Section 2.1 explained the methodical differences of darknets to classical P2P networks. Now follows, althoug already briefly touched, a discussion of the arising characteristics and the thereby resulting challenges for the practical use of darknets.
 
 \subsection{Hidden Topology}
 
@@ -76,9 +77,9 @@ An alike situation can be found in a wireless sensor network (WSN), where the to
 
 \subsection{Difficulties for routing ...}
 
-This high rate of protection of privacy relevant information comes with numerous difficulties in designing and evaluating simultaneously resilient and salable darknets. Messages whose destination is not within a nodes neighbors have to be forwarded to some nodes in between. In conventional networks the next node can be chosen on the basis of topology information about the network, e.g. in form of a classical routing table or structured overlays in P2P systems.
+This high rate of protection of privacy relevant information comes with numerous difficulties in designing and evaluating darknets that should be simultaneously resilient and scalable. When sending a message to a node that is not a connected neighbor, a routing decision has to be made. In conventional networks the next node can be chosen on the basis of topology information about the network, e.g. in form of a classical routing table or structured overlays in P2P systems.
 
-Though any topology information about the network is confidential, they are not distributed and collected by the nodes and not available for deciding to which node a message is given next. This holds as well for meta topology information such as the origin of a message and therefore the direction the according node lies within.
+Because any topology information about the network is confidential, they are not distributed. Therefore the topology of a darknet can in general not be used to make routing decisions. This holds as well for meta topology information such as the origin of a message. From this the approximate direction a node lies within could be estimated.
 
 
 \subsection{... and evaluation}
@@ -96,15 +97,15 @@ For evaluating distributed systems like P2P overlays, and darknets in particular
 
 \subsection{Full blown test environment or mathematical model evalution?}
 
-The original software can be tested, almost or completely unmodified, in a \emph{testbed}. This is used to test the functionality itself but scales very badly for multiple nodes and even more for larger networks. In particular for evaluating darknets, information gathering methods have to be added since this is against their normal usecase. \todo{vor und nachteile ausarbeiten}
+The original software can be tested, almost or completely unmodified, in a \emph{testbed}. This is used to test the functionality itself but scales very badly for multiple nodes and even more for larger networks, as it is time and resource intensive and therefor expensive to setup multiple nodes. In particular for evaluating darknets, information gathering methods have to be added since this is against their normal usecase.
 
 A completely different approach is to build a \emph{analyical model} and derive formulas for the relevant values from it. This is quite flexible for varying parameters and very scalable and fast. But on the other hand the derivation of formulas can be challenging and small changes in the model or algorithm can render most of the work inappropriate. With analytical models upper and/or lower bounds can be estimated, but real world performance can depend on protocol details and other factors hard do model.
 
 \subsection{Inbetween: emulation and simulation}
 
-By removing all irrelevant and independent parts of the original software and run many instances of such slimed clients a network can be \emph{emulated}. Main benefit is that no new software has to be written that can be faulty or not sound to the original one. While very little new implementation effort is required, in common the client has still much overhead e.g. for network communication.
+By removing all irrelevant and independent parts of the original software and run many instances of such slimed clients a network can be \emph{emulated}. Main benefit is that no new software has to be written that can be faulty or not sound to the original one. While very little new implementation effort is required, in common the client still has unnecessary components e.g. for network communication. Certainly, this is not applicable to every software, as they may suffer from inflexible software design where the routing algorithms components are not easily seperable from the rest.
 
-This consummes much more resources in time and memory than a \emph{simulation}, whereby the abstract, relevant behavior is implemented in a simulation environment. Large networks and complex algorithms can be simulated. Implementation is strait forward and can be easier then building a proper formula. However, the algorithms must soundly be implemented and simulation can take much computation time and memory depending on the model and the network to be simulated.
+This consummes eventually much more resources in time and memory than a \emph{simulation}, whereby the abstract, relevant behavior is implemented in a simulation environment. Large networks and complex algorithms can be simulated. Implementation is straight forward and can be easier then building a proper formula. However, the algorithms must soundly be implemented and simulation can take much computation time and memory depending on the model and the network to be simulated.
 
 
 \subsection{Applicability on darknets}
