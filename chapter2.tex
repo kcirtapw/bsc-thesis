@@ -5,25 +5,25 @@
 
 In this section a short history of the internet leading to the development and spreading of peer-to-peer network architecture is given. The key concepts and properties of peer-to-peer systems are explained. It should provide a basic understanding of differences and advantages of the peer-to-peer network design.
 
-\subsection{From classical client-server architecture to distributed networks}
+\subsection{From classic client-server architecture to distributed networks}
 
-The internet emerged from several military and sience research networks, with ARPANET as the most commonly known of them. It was planed and designed as a decentralized telecomunication network resiliant to outages. Although its resiliance on a network level, most its services have still a centralized structure. On failure not the whole network will fail, but a service, as a website like \emph{www.tu-darmstadt.de} or its email system, can come unavailable easily.
+The Internet emerged from several military and sience research networks, with ARPANET beeing the most commonly known. It was planed and designed as a decentralized telecommunication network resiliant to outages. Although it is resiliant on a network level, most its services have a centralized structure. On failure not the whole network will fail, but a service, as a website like \emph{www.tu-darmstadt.de} or its email system, can come unavailable easily.
 
-This originates from the in most protocols and services used client-server architecture. The clients tries to find a single server to send its request to. The server processes the request and sends the response back. If in the time between the server is chosen by the client and it sends the response the server fails, the reqeust fails too. There are several methods in protocol and network design to prevent such failures.
+This originates from the client-server architecture used by most protocols and services. The clients tries to find a single server to send its request to. The server processes the request and sends the response back. If the server fails after the client has sent its request and before a response can be send, the request fails too. There are several methods in protocol and network design to prevent such failures.
 
-The basic approach is to devide the responsipilities in different independant domains. For example an email server is not responsible for all the emails in the world but only for those of one (or more) domains. Note that such a domain does not necessarily mean a domain name in the DNS system but can be an arbitrary domain like a company, an university or just a group of people.
+The basic approach is to devide the responsibilities in different independent domains. For example an email server is not responsible for all the emails in the world but only for those of one (or more) domains. Note that such a domain does not necessarily mean a domain name in the DNS system but can be an arbitrary domain like a company, an university or just a group of people.
 
-The next level of reduction of responsibility is to reduce what a single component is responsible for. Avoidance of single-point-of-failures, redundancy, load balancing where single requests are distributed to different servers are the common ones. However, all the approaches on this level scale very badly and therefor are highly expensive when achieving good fault tolerance or dealing with large amount of clients or reqeuests.
+The next step in reducing the responsibility is to reduce what a single component is responsible for. The most important approaches are the avoidance of single points of failure, and the introduction of redundancy and load balancing, which distributes the requests over different servers. However, all approaches on this level scale very badly and therefore achieving fault tolerance or dealing with a large amount of clients or requests is expensive on this level.
 
-Taking the splitting of responsibility to the maximum, every one is responsible for everything. This is basicaly the idea behind the peer-to-peer architecture in which every client is simultaniously a server. Of course not every client is responsible for everything in a network but each of them is participating in the service of the network, serving a fraction of the serving while for each fraction there are multiple servers. Since there is commonly no distinction between clients and servers a participant is called a node or peer.
+Taking the splitting of responsibility to the maximum, every entity is responsible for everything. This is basicaly the idea behind the peer-to-peer architecture in which every client is simultaniously a server. Naturally not every client an be responsible for everything, but each of them is participating in the service the network provides, serving a fraction of it while for each fraction there are multiple, redundant ``servers''. This  both reduces the load of every single server and simulataniuslly adds redundancy. Since there is commonly no distinction between clients and servers in a P2P network, a participant is called a node or peer.
 
-\subsection{The rise of P2P systems and todays usage}
+\subsection{The rise of P2P systems and its usage today}
 
-With the Domain Name System (DNS) and the Simple Mail Transfer Protocol (SMTP) some parts of the peer-to-peer design are already used since early days of the internet. More than that, P2P ideas were researched, developed and used in smaller scale for a long time. But it took until the late '90 and file sharing networks as Napster to popularize the P2P concept.
+With the Domain Name System (DNS) and the Simple Mail Transfer Protocol (SMTP) some parts of the peer-to-peer design are already in use since the early days of the internet. More than that, P2P ideas were researched, developed and used in smaller scale for a long time. But it took until the late '90 and file sharing networks like Napster to popularize the P2P concept.
 
-This high usage for unauthorized file sharing of copyright protected material led to a infamous image. Under this the term P2P suffered for quite a time. Just in the past few years several larger companys began to utilize peer-to-peer systems, e.g. for delivering larger sets of data to a huge amount of customers.
+TP2P networks experienced a huge increase in participation and usage when sharing copyright protected material over them started, and gave them an infamous image. Under this the term P2P suffered for quite a time. Just in the past few years several larger companys began to utilize peer-to-peer systems, e.g. for delivering larger sets of data to a huge amount of customers. This improved the acceptance and the image of P2P technology.
 
-Today P2P systems are more and more used as a resiliant and scalable basis for communication, content delivery, and distributed storage, both legaly in public and unclear or even illegaly in twilight.
+Today P2P systems are more and more used as a resiliant and scalable basis for communication, content delivery, and distributed storage. These benefits are both used in public and in unclear twighlight or even illegality. 
 
 \subsection{What a peer-to-peer overlay is}
 
@@ -115,6 +115,6 @@ In principle all of the discussed evaluation methods are applicatable, each with
 
 While concentrating solely on the problems of routing in a darknet, a simulation based approach is the best method. Relativly easy implementation of routing algorithms, the high flexibility and scalabilty compared with a good accuracy and soundness, make this a powerfull way of researching and developing darknets.
 
-\section{\sout{Survey of previous darknets}}
+\section{Survey of previous darknets}
 
 
