@@ -70,9 +70,11 @@ To achieve this, forwarded messages are modified to originate from the forwardin
 The methodical differences of darknets to classical P2P networks were explained. Now follows, althoug already roughly touched, a discussion of the arising characteristics and the thereby resulting challenges for the practical use of darknets.
 
 \subsection{Hidden Topology}
-\todo{mehr...}
 
-In summary the membership of a node in a darknet is only known to its trusted peers and messages can originate from either the node they are received from or any node beyond it.
+In summary the membership of a node in a darknet is only known to its trusted peers. The other way, all a node knows about the topology is the list of its online peers. If the destination node of a message is not contained in this list, it has, at least in the basic darknet model, no clue where to send it to.
+
+An alike situation can be found in a wireless sensor network (WSN), where the topology of the network is changing and unclear to the single nodes. It is caused by the limited rage of the nodes and their constrains in energy consumption. To overcome this problem, WSNs often use the information they can get from forwarded messages: the rough direction the source node of a message. This is prevented in darknets by the hop-by-hop anonymity.
+
 
 \subsection{Difficulties for routing ...}
 
