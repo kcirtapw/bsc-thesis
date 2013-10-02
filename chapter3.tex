@@ -2,7 +2,7 @@
 
 \section{Why we chose the simulation based approach}
 
-As explained in Chapter 2.4, different methods to evaluate darknet systems exist, each suitable for different usecases. To analyse a routing algorythm, its performance, strengths, and weaknesses, larger scale networks are neccessary. For this, especially while dealing with changeing algorythms and parameters, the simulation approch is most appropriate since it has the best tradeoff of flexibility and scalabiliy. However, this method is up to now underrepresented. To change this we decided to develop an easy to use and extend model and implement it in an wideley adopted network simulation framework as OMNet++. \todo{how to prove this statement?} This gives the posibility to easily estimate the behavior of a routing algorythm in a darknet while maintain comparability of the results.
+As explained in Section \ref{sec:evaluationmethods}, different methods to evaluate darknet systems exist, each suitable for different usecases. To analyse a routing algorythm, its performance, strengths, and weaknesses, larger scale networks are neccessary. For this, especially while dealing with changeing algorythms and parameters, the simulation approch is most appropriate since it has the best tradeoff of flexibility and scalabiliy. However, this method is up to now underrepresented. To change this we decided to develop an easy to use and extend model and implement it in an wideley adopted network simulation framework as OMNet++. \todo{how to prove this statement?} This gives the posibility to easily estimate the behavior of a routing algorythm in a darknet while maintain comparability of the results.
 
 \section{Node based with fixed neighbor set and add-hoc anonymity (static)}
 
@@ -18,6 +18,8 @@ This simple model is static, all nodes are always online and a failing node is n
 
 
 \section{Churn model extension with bootstrapping and offline detection (dynamic)}
+
+The earlier implemented static model of all nodes being online during the complete simulation run is very easy and gives already chance to investigate large parts of a darknets behavior. However, it is not very realistic.
 
 To take into account the posibilitie of nodes shutting down, having connection problems or failing otherwise, the model is extended by a churn based lifetime model. It gives the nodes a probabilistic lifetime, so not all nodes are online in the begining, but they bootstrap into the network. They have to establish a connection to their peers.
 

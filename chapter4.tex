@@ -1,8 +1,8 @@
 \chapter{Implementation}
 
-\section{The simulation library and framework OMNeT++}
+As statet above, network simulation is an both effective and efficient method to evaluate network performance, but an underrepresented one for darknets. In this chapter we describe the used discrete event based simulation framework OMNeT++, its components and their purpose, the implementation of our model as a basic darknet node and its extension of possibly offline nodes.
 
-As statet above, network simulation is an both effective and efficient method to evaluate network performance, but an underrepresented one for darknets. This section will cover the used simulation framework OMNeT++.
+\section{The simulation library and framework OMNeT++}
 
 \subsection{Network simulators and why we cose OMNeT++}
 
@@ -10,15 +10,17 @@ In chapter 2.5 we stated that the benefit in using simulation for routing evalua
 
 Besides some general purpose simulatiors and many specialized ones, there are even some for network analysation and evaluation. Widely used open source products are ns2/ns3 and OMNeT++. Additionally to saving the implementation of a simulator, using a commonly adopted framework gains a better comparability and to other results and respectability of the results by other researchers.
 
-We chose OMNeT++ for its extendability, modular design and wide varity of already implemented telecomunication protocols shipped with the INET package for example.
+We decided against ns3 as it is way more complex and too overloaded for our purpose, aiming at a high scalability. The large functionality adds many potetial source of errors as it is harder to understand and implement a correct and sound simulation. Instead we chose OMNeT++ for its extendability, modular design and wide varity of already implemented telecomunication protocols shipped with the INET package for example.
 
 \subsection{What is OMNeT++}
 
-OMNeT++ is an simulation library and framework written in C++. It is modular and extensible and primarily used to simulate networks not only limited to telecomunication networks. Models, the basic entity, are written in C++ and can be assebled to larger models. Those compound models, up to the whole network, are described with a higher level language, the NEtwork Description language (NED).
+OMNeT++ is an discrete event based simulation library and framework written in C++. It is modular and extensible and primarily used to simulate networks not only limited to telecomunication networks. Models, the basic entity, are written in C++ and can be assebled to larger models. Those compound models, up to the whole network, are described with a higher level language, the NEtwork Description language (NED). 
 
-Models, as well as the parts of a compound model, communicate with each other via messages. Messages are handed between input and output ports, in terms of OMNeT++ called gates, of models. A model can send messages on a gate and is informed if a messages arives on one. Messages are also used internaly of a model to trigger scheduled events. Gates can be connected to gates of the composing models directly so messages can be passed "up" and "down" within a compound model. Models on the same layer can be connected via channels, which can have corresponding properties to indicate the characteristics of a communication channel like the bandwith, the delay or even an error rate.
+Models, as well as the parts of a compound model, communicate with each other via messages. Messages are handed between input and output ports, in terms of OMNeT++ called gates, of models. A model can send messages on a gate and is informed if a messages arives on one. Messages are also used internaly of a model to trigger scheduled events. Gates can be connected to gates of the composing models directly so messages can be passed ``up'' and ``down'' within a compound model. Models on the same layer can be connected via channels, which can have corresponding properties to indicate the characteristics of a communication channel like the bandwith, the delay or even an error rate.
 
 With the NED a network of modules and interconnecting channels can be composed. Along with the models of such a network, the whole simulation is configured via an .ini file.
+
+The simulation is processing a sequence of scheduled events which can call actions in the models, which can then trigger scheduling more events. The composition of a network to be simulated and the simulation process is described in more detail in the following.
 
 \subsection{The simulation process}
 
@@ -40,26 +42,52 @@ Since OMNeT++ is a general purpose network simulation framework not limited to a
 
 For the darknet simulation we use the INET package to provide modular and realistic underlaying protocols. Depending on the level of realism to be achieved, the underlaying topology can be built as a single switch network or a whole internet like network with mulitple routers.
 
-\section{Implementaion of the static model}
+\section{Implementaion of the basic model}
 
-The model of a general darknet node is explained in chapter 3
+As in any P2P Overlay an addressing scheme is needed for darknets as well. We chose a simple string representation for the nodes identification, the \emph{nodeID}. Other addressing schemes can be mapped to strings if needed.
 
-\section{Network generation}
+The \emph{DarknetBaseNode} class implements the general behaviour of a darknet node and the basic interaction with the simulation framework components. It is responsible for sending and handling recieved messages. \emph{Selfmessages}, used in OMNeT++ for notification and scheduling events are detected and dispatched to an overwritable method. This way, subclasses can easily use and extend this notification system. A simple implementation of sending messages to other nodes is implemented, including setting the source of the message to the node, calling the method that determines the nodes the message is send to and then sending the message to all these nodes. In the easiest case, a deriaved class has only to implement the method that chooses the next nodes to gain message sending functionality.
 
-generating the network .ned file and simulation configuration from a given network graph
+If no routing descision is needed, or possible, a simplier methoden \emph{sendDirectMessage} is provided. It sends the message directly to the specified node. This is a huge simplification of the real world and only used in special cases like connecting an offline node that can obviously not in the connected list. The simplification at this point is valid, since in the underlying model of the simulation we concentrate only on the routing algorithm and the problem of how to contact a node whose underlay address (in the internet the IPv4 address for example) is unknown, is ignored.
+
+The DarknetBaseNode class also basically manages the list of known & trusted peers and the list of connections to online peers. The first lists limits to which other nodes connections are allowed. The second one keeps track of those who are online, that is who are available to forwarded messages to, along with the address in the underlaying network.
+
+The second key property of darknets, the anonymized forwarding of messages for other nodes, is simply implemented as well. The source nodeID of messages that have to be forwarded are set to the nodes one. The nodeID from which the message was received is saved along with the \emph{request ID}. Responses contain the requests ID they are the response for. On forwarding a message, the \emph{time-to-life counter} (short: TTL) contained in each message is decremented by one. Thereby the network is not so easily overloaded and each request is garantueed to be terminating, but eventually failing for not reaching its destination.
+
+Routing the response back the request came from can be called \emph{backrouting}. The request ID can be used, while backrouting, to determin to which node a response of a request is to be send to. This whole mechanism is only a simplistic implementation of the corresponding darknet characteristic and can be extended or overwritten with a more advanced algorithm by derived classes.
+
+As explained in the model description, we simplified the different reqeust and response types in different P2P networks possible to only one common request and an accoring response type. If further differentiation of the message types is needed, they can be implemented by extending the message class. How a node acts up on reception of such a message type can be defined in the \emph{handleIncomingMessage} method.
+
+\section{Trust relation and network generation}
+
+Unlike as in a standard P2P overlay and modeled by existing P2P simulation frameworks as OverSim, a darknet node connects only to specific nodes. It is not possible to specify the (maximum) amount of nodes in the network and simply spawn or delete them on demand. Every node has to have a set of its trusted peers from the beginning.
+
+To handle even very large social graphs of several thousands of nodes we developed a python script to generate the network composition in a .ned file and the node and simulation configuration in an .ini file. The script takes the network graph as file, starting with the nodeID and followed by all its trusted peers seperated by a blank. A directed symetric graph is assumed, in which each directed edge between two nodes has a reversly directed edge specifying them mutiality of trust between those nodes. However this is not enforced and complexer scenarios with not necessarily mutual trust relations can be modeled.
+
+The network is set up with just a single router all nodes are connected to. To simulate complexer underlay network topologies, the script can be modified accordingly. Thereby it would be easily possible to simulate for example a split of a subset of the network by just putting some nodes on a different router and removing the channel between both routers during simulation.
 
 \section{Churn based lifetime model}
-If a node goes offline, this has to be detected by its peers. Therefor, an acknowledge mechanism is needed. Basically a acknowledge message (short: ACK) is send back on receieving a message. If such an ACK is not received within a certain amount of time, the message can be resent up to a selectable number of times. If no ACK is received after that, the peer is no longer considered the be online and connected.
 
+The so far implemented static model lacks the capability of modeling nodes that go online or offline during the simulation. The model with a node lifetime adds this feature. In the implementation, a way has to be built in, that nodes can detect or get informed a changed state of one of their peers.
 
+We decided to implement an acknowledge mechanism. Basically a acknowledge message (short: ACK) is send back on receieving a message. If such an ACK is not received within a certain amount of time, the message can be resent up to a selectable number of times. If no ACK is received after that, the peer is no longer considered the be online and connected. No further messages are send to this node.
+
+If a node comes online, it connects to its peers. This incomming connection establishment request can be used to trigger such a request in reverse direction by a node itself. As these reqeusts do not rely on the list of connected peers, this can be used all the time. This process is applicable as well for rejoining nodes during the main simulation phase.
 
 \section{two simple example routing models}
 
-\subsection{randomwalk}
+As a demonstration of the simplicity of extending the model and implement a darknet routing algorithm, we implemented two different, yet very simple routing algorithms applicatable to darknets. The first one is \emph{random walk} routing in which a message travels on a randomly chosen path through a graph. In the second one, called \emph{flooding}, a message is forwarded to all connected peers a node has. Both perform miserable compared to todays commonly used routing algorithms, but are both simple to implement and to follow, and are well researched.
 
-\begin{itemize}
-\item            with n-degree fanout
-\item            very simple loop prevention
-\end{itemize}
+\subsection{The random walk algorithm}
 
-\subsection{flooding}
+A ``random walk'' over a graph is a randomly chosen path between two vertices. These paths are commonly far away from optimum and there are basically no further constrains, even loops could be allowed. In an decentralized environment, these paths can of course not be selected beforehand, but every node just pics the next node from its available peers randomly. Basically this is all needed to implement this routing, the \emph{findNextHop} method simply returns one randomly choosen entry of the ``connected'' list. Depending on the size of the network these paths will not hit the destination since the message exceedes its time to life.
+
+A simple optimisation, which would virtually allways be used in pratice, comes at no cost: a simple loop prevention on the backrouting of the response. The node only saves the source nodeID of a request, the first time it sees this reqeust. Although, if requiered for the soundness of a model, this can still be implemented, depending on the conrete constrains of the model.
+
+Another extension to the simplest random walk model was choosen to be investigated: the effect of multiple started requests on the average legth of found paths. The initial requesting node sends multiple requests which could all take different paths. Only the first of those requests ariving at the destination node is responded to. For this the nodes has to save the ID of reqeuests it already served.
+
+\subsection{Floody routing}
+
+The second implemented algorithm is flooding in which a message is forwarded to every available peer in the ``connected'' list. This is done just once for the first time a message is recieved by a node. This way, flooding can allways find the shortest path between two nodes. The disadvantage is a heavy load on the network since a message would be forwarded to every node in the network at least once, most nodes even would get the message multiple times from many of their peers.
+
+To limit the impact on the networks load, a much smaller TTL is used compared to randomwalk, and therefor only nearby nodes will be reachable. Additionally the high degre of concurrency of events during the first flooding simulation was problematic since way to many messages were waiting for procession. To resolve this problem, we increased the time delay and its variance between requests.

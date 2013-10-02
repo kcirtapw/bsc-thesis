@@ -5,33 +5,33 @@
 
 In this section a short history of the internet leading to the development and spreading of peer-to-peer network architecture is given. The key concepts and properties of peer-to-peer systems are explained. It should provide a basic understanding of differences and advantages of the peer-to-peer network design.
 
-\subsection{From classical client-server architecture to distributed networks}
+\subsection{From classic client-server architecture to distributed networks}
 
-The internet emerged from several military and sience research networks, with ARPANET as the most commonly known of them. It was planed and designed as a decentralized telecomunication network resiliant to outages. Although its resiliance on a network level, most its services have still a centralized structure. On failure not the whole network will fail, but a service, as a website like \emph{www.tu-darmstadt.de} or its email system, can come unavailable easily.
+The Internet emerged from several military and sience research networks, with ARPANET beeing the most commonly known. It was planed and designed as a decentralized telecommunication network resiliant to outages. Although it is resiliant on a network level, most its services have a centralized structure. On failure not the whole network will fail, but a service, as a website like \emph{www.tu-darmstadt.de} or its email system, can come unavailable easily.
 
-This originates from the in most protocols and services used client-server architecture. The clients tries to find a single server to send its request to. The server processes the request and sends the response back. If in the time between the server is chosen by the client and it sends the response the server fails, the reqeust fails too. There are several methods in protocol and network design to prevent such failures.
+This originates from the client-server architecture used by most protocols and services. The clients tries to find a single server to send its request to. The server processes the request and sends the response back. If the server fails after the client has sent its request and before a response can be send, the request fails too. There are several methods in protocol and network design to prevent such failures.
 
-The basic approach is to devide the responsipilities in different independant domains. For example an email server is not responsible for all the emails in the world but only for those of one (or more) domains. Note that such a domain does not necessarily mean a domain name in the DNS system but can be an arbitrary domain like a company, an university or just a group of people.
+The basic approach is to devide the responsibilities in different independent domains. For example an email server is not responsible for all the emails in the world but only for those of one (or more) domains. Note that such a domain does not necessarily mean a domain name in the DNS system but can be an arbitrary domain like a company, an university or just a group of people.
 
-The next level of reduction of responsibility is to reduce what a single component is responsible for. Avoidance of single-point-of-failures, redundancy, load balancing where single requests are distributed to different servers are the common ones. However, all the approaches on this level scale very badly and therefor are highly expensive when achieving good fault tolerance or dealing with large amount of clients or reqeuests.
+The next step in reducing the responsibility is to reduce what a single component is responsible for. The most important approaches are the avoidance of single points of failure, and the introduction of redundancy and load balancing, which distributes the requests over different servers. However, all approaches on this level scale very badly and therefore achieving fault tolerance or dealing with a large amount of clients or requests is expensive on this level.
 
-Taking the splitting of responsibility to the maximum, every one is responsible for everything. This is basicaly the idea behind the peer-to-peer architecture in which every client is simultaniously a server. Of course not every client is responsible for everything in a network but each of them is participating in the service of the network, serving a fraction of the serving while for each fraction there are multiple servers. Since there is commonly no distinction between clients and servers a participant is called a node or peer.
+Taking the splitting of responsibility to the maximum, every entity is responsible for everything. This is basicaly the idea behind the peer-to-peer architecture in which every client is simultaniously a server. Naturally not every client an be responsible for everything, but each of them is participating in the service the network provides, serving a fraction of it while for each fraction there are multiple, redundant ``servers''. This  both reduces the load of every single server and simulataniuslly adds redundancy. Since there is commonly no distinction between clients and servers in a P2P network, a participant is called a node or peer.
 
-\subsection{The rise of P2P systems and todays usage}
+\subsection{The rise of P2P systems and its usage today}
 
-With the Domain Name System (DNS) and the Simple Mail Transfer Protocol (SMTP) some parts of the peer-to-peer design are already used since early days of the internet. More than that, P2P ideas were researched, developed and used in smaller scale for a long time. But it took until the late '90 and file sharing networks as Napster to popularize the P2P concept.
+With the Domain Name System (DNS) and the Simple Mail Transfer Protocol (SMTP) some parts of the peer-to-peer design are already in use since the early days of the internet. More than that, P2P ideas were researched, developed and used in smaller scale for a long time. But it took until the late '90 and file sharing networks like Napster to popularize the P2P concept.
 
-This high usage for unauthorized file sharing of copyright protected material led to a infamous image. Under this the term P2P suffered for quite a time. Just in the past few years several larger companys began to utilize peer-to-peer systems, e.g. for delivering larger sets of data to a huge amount of customers.
+TP2P networks experienced a huge increase in participation and usage when sharing copyright protected material over them started, and gave them an infamous image. Under this the term P2P suffered for quite a time. Just in the past few years several larger companys began to utilize peer-to-peer systems, e.g. for delivering larger sets of data to a huge amount of customers. This improved the acceptance and the image of P2P technology.
 
-Today P2P systems are more and more used as a resiliant and scalable basis for communication, content delivery, and distributed storage, both legaly in public and unclear or even illegaly in twilight.
+Today P2P systems are more and more used as a resiliant and scalable basis for communication, content delivery, and distributed storage. These benefits are both used in public and in unclear twighlight or even illegality. 
 
 \subsection{What a peer-to-peer overlay is}
 
-Of course not every node in the internet or another network participates in a P2P network. And not every two peers in a P2P network have to be directly connected and be able to communicate with each other. Therefor the P2P network graph is only a subset of the underlaying topology graph.
+The Internet connects many devices worldwide over different, commonly multiple connections. In this global network nodes can take part in ``virtual'' networks over the top of the underlying network. In this overlay network, nodes are connected by logical links, each of which having a corresponding path in the underlying network. Therefor the P2P network graph is a subset of the underlying networks topology graph. \todo{Bild zu Overlays, ggf wikipedia? lizen?}
 
-Commonly a seperate addressing scheme for communication in such a network is used. In most cases a node is identified by just a sequence of bits, its ID. It is usually represented as a number in decimal or hexadecimal form. All possible IDs together are called the address or ID space and its size vary from network to network but is constant within one network.
+Commonly a seperate addressing scheme for communication in such a network is used. In most cases a node is identified by just a sequence of bits, its ID. It is usually represented as a number in decimal or hexadecimal form. All possible IDs together are called the address or ID space and its size varies from network to network but is constant within one network.
 
-Both these propertys together form a more or less idependant network put on top of the underlaying one. It is then called a peer-to-peer overlay.
+Both these properties together form a more or less idependant network put on top of the underlying one. This is called a peer-to-peer overlay.
 
 
 \section{Darknets: privacy preserving P2P overlays}
@@ -40,77 +40,49 @@ In the last section we gave a brief overview of the key aspects of peer-to-peer 
 
 \subsection{Consequences of decentralisation}
 
-As discussed before the essence of P2P systems are their decentralisation. Not a single server but virtually every pariticpant of the system is responsible for serving requests which results in a high failure resiliance. What is a valuable property for its users can be problematic if trying to stop the service of a network. Preventing the unauthorized distribution of copyright protected material just as repressed communication is rendered nearly impossible. \todo{weiter ausführen? eventuell 2 absätze, sonst mit nächster subsection zusammen legen?}
+As discussed in section 2.1 the essence of P2P systems are their decentralisation. Not a single server but virtually every pariticpant of the system is responsible for serving requests which results in a high failure resiliance. While this is a valuable property for its users, it can be problematic if trying to stop the service of a network. Single nodes clearly can be filtered or blocked by their ISP or a firewall. Though, this does not prevents the unauthorized distribution of copyright protected material or repressed communication as there will be still many nodes left.
 
 \subsection{The demand for privacy preservation}
 
-The distribution of objectable information can therefor not effectivly be prevented but the nodes could still be prosecuted afterwards if their membership and identity is revealed. In the used file sharing networks the communication between two nodes is indeed encrypted and not readable buy outstanders, but in order to exchange infromation the nodes have to connect to each other. Therefor their identity, in the internet commonly the used IP address at a given time, is revealed to each other.
+The distribution of objectonable information can therefor not be effectivly prevented but the operator of a node could still be prosecuted, if their membership and identity is revealed. In the used file sharing networks the communication between two nodes is indeed encrypted and not readable by outstanders, but in order to exchange infromation the nodes have to connect to each other. Therefor their identity, in the internet commonly the used IP address at a given time, is revealed to each other.
 
-This is, however, not limited to file sharing networks. In every regime undesired communication could be somewhat pushishable, regardless of it is a whisle blower in a missbehaving company or regime critics under a dictatorship. \todo{erklärung/begründung warum trotz dual use solche technologie entwickelt und bereit gestellt werden sollte}
-
-For those oppressed environments a more privacy preserving class of peer-to-peer networks has evolved, the darknets. In the following the main differences to classical P2P systems are touched while they will be explained in detail in chapter 3.
+This is, not limited to file sharing networks. Contrary to content delivery networks, any regime undesired communication can be somewhat pushishable. This applys to mancy cases, for example a whisle blower in a missbehaving company or regime critics under a dictatorship. For an free society the freedom of speach and the ability to inform oneself is important. Therefor it is essential to be able to communicate whithout surveilliance and obstraction.
 
 
-\subsection{Trust relation base membership and membership consealment}
 
-Exchanging any kind of information on the internet leads to the necessaty of directly connecting of at least two participants. As explained, this leads to revealing the identity of those in the underlaying network to each other. To overcome the impact of this privacy relevant information disclosure, connections are only established between mutual known and trusted parties.
+\subsection{Key concepts of darknets}
+
+For those oppressed environments a more privacy preserving class of peer-to-peer networks has evolved, the darknets. In the following section the main differences to classical P2P systems are briefly noted while they get explained in detail in chapter 3.
+
+Exchanging any kind of information on the internet leads to the necessaty of directly connecting of at least two participants. As explained, this leads to revealing the identity of those in the underlying network to each other. To overcome the impact of this privacy relevant information disclosure, connections are only established between mutually known and trusted parties.
 
 Additionally to communicating with kown and trusted peers only, no information about which peers a node is connected to are passed. On compromisation only the identiy of directly connected peers are affected. Anyway, no node can be held responsible for contact to other nodes, since not even participants know to which peers a node is connected to.
 
-\subsection{Forwarding requests and hop-by-hop anonymity}
+But since only communicating with trusted peers would end in a very limited reachability, communication between not directly connected nodes has to be forwarded on some way. To do so the identity in the underlying network and information about the topology, who is connected to whom, have to be concealed.
 
-But since only communicating with trusted peers would end in a very limited reachability, communication between not directly connected nodes has to be forwarded on some way. Thereby the identity in the underlaying network and information about the topology, who is connected to whom, have to be concealed.
-
-To achieve this, forwarded messages are modified to originate from the forwarding node itself. Returning answers are modified accordingly and are passed back to the source of the original request. As this is done on every node, the identity of the origin of a message is preserved and no information about the topology is reveald.
+To achieve this, forwarded messages are modified to originate from the forwarding node itself. Returning answers are modified accordingly and are passed back to the source of the original request. \todo{grafik die das erläutert?} As this is done on every node, the identity of the origin of a message is preserved and no information about the topology is reveald.
 
 
 
 \section{Darknet characteristics and resulting challenges}
 
-The methodical differences of darknets to classical P2P networks were explained. Now follows, althoug already roughly touched, a discussion of the arising characteristics and the thereby resulting challenges for the practical use of darknets.
+Section 2.1 explained the methodical differences of darknets to classical P2P networks. Now follows, althoug already briefly touched, a discussion of the arising characteristics and the thereby resulting challenges for the practical use of darknets.
 
 \subsection{Hidden Topology}
-\todo{mehr...}
 
-In summary the membership of a node in a darknet is only known to its trusted peers and messages can originate from either the node they are received from or any node beyond it.
+In summary the membership of a node in a darknet is only known to its trusted peers. The other way, all a node knows about the topology is the list of its online peers. If the destination node of a message is not contained in this list, it has, at least in the basic darknet model, no clue where to send it to.
+
+An alike situation can be found in a wireless sensor network (WSN), where the topology of the network is changing and unclear to the single nodes. It is caused by the limited rage of the nodes and their constrains in energy consumption. To overcome this problem, WSNs often use the information they can get from forwarded messages: the rough direction the source node of a message. This is prevented in darknets by the hop-by-hop anonymity.
+
 
 \subsection{Difficulties for routing ...}
 
-This high rate of protection of privacy relevant information comes with numerous difficulties in designing and evaluating simultaneously resilient and salable darknets. Messages whose destination is not within a nodes neighbors have to be forwarded to some nodes in between. In conventional networks the next node can be chosen on the basis of topology information about the network, e.g. in form of a classical routing table or structured overlays in P2P systems.
+This high rate of protection of privacy relevant information comes with numerous difficulties in designing and evaluating darknets that should be simultaneously resilient and scalable. When sending a message to a node that is not a connected neighbor, a routing decision has to be made. In conventional networks the next node can be chosen on the basis of topology information about the network, e.g. in form of a classical routing table or structured overlays in P2P systems.
 
-Though any topology information about the network is confidential, they are not distributed and collected by the nodes and not available for deciding to which node a message is given next. This holds as well for meta topology information such as the origin of a message and therefore the direction the according node lies within.
+Because any topology information about the network is confidential, they are not distributed. Therefore the topology of a darknet can in general not be used to make routing decisions. This holds as well for meta topology information such as the origin of a message. From this the approximate direction a node lies within could be estimated.
 
 
 \subsection{... and evaluation}
-\todo{mehr...}
-The same difficulties arise for measuring any quality in a darknet, for example for evaluation and comparison of decisions while development.
 
-
-\section{Metrices for routing evaluation}
-
-
-
-\section{Evaluation methods for networks}
-
-For evaluating distributed systems like P2P overlays, and darknets in particular, there are four different approaches. \todo{...mehr}
-
-\subsection{Full blown test environment or mathematical model evalution?}
-
-The original software can be tested, almost or completely unmodified, in a \emph{testbed}. This is used to test the functionality itself but scales very badly for multiple nodes and even more for larger networks. In particular for evaluating darknets, information gathering methods have to be added since this is against their normal usecase. \todo{vor und nachteile ausarbeiten}
-
-A completely different approach is to build a \emph{analyical model} and derive formulas for the relevant values from it. This is quite flexible for varying parameters and very scalable and fast. But on the other hand the derivation of formulas can be challenging and small changes in the model or algorithm can render most of the work inappropriate. With analytical models upper and/or lower bounds can be estimated, but real world performance can depend on protocol details and other factors hard do model.
-
-\subsection{Inbetween: emulation and simulation}
-
-By removing all irrelevant and independent parts of the original software and run many instances of such slimed clients a network can be \emph{emulated}. Main benefit is that no new software has to be written that can be faulty or not sound to the original one. While very little new implementation effort is required, in common the client has still much overhead e.g. for network communication.
-
-This consummes much more resources in time and memory than a \emph{simulation}, whereby the abstract, relevant behavior is implemented in a simulation environment. Large networks and complex algorithms can be simulated. Implementation is strait forward and can be easier then building a proper formula. However, the algorithms must soundly be implemented and simulation can take much computation time and memory depending on the model and the network to be simulated.
-
-
-\subsection{Applicability on darknets}
-
-
-
-\section{Survey of previous darknets}
-
+Comparable difficulties arise for measuring any kind of quality while evaluating darknets. For example it is important to be able to compare the path a message travels along to the best possible path from its source to its destination, however a quality of a path is measured. This contradicts so fundamentaly the protection of privacy, that it is virtual impossible to observer and analyze a real world darknet without disrupting its actual usecase. So other then other networks, both ``normal'' and P2P networks, some kind of extra study environment is required to develop and improve darknets.
 
