@@ -27,11 +27,11 @@ Today P2P systems are more and more used as a resiliant and scalable basis for c
 
 \subsection{What a peer-to-peer overlay is}
 
-Of course not every node in the internet or another network participates in a P2P network. And not every two peers in a P2P network have to be directly connected and be able to communicate with each other. Therefor the P2P network graph is only a subset of the underlaying topology graph.
+The Internet connects many devices worldwide over different, commonly multiple connections. In this global network nodes can take part in ``virtual'' networks over the top of the underlying network. In this overlay network, nodes are connected by logical links, each of which having a corresponding path in the underlying network. Therefor the P2P network graph is a subset of the underlying networks topology graph. \todo{Bild zu Overlays, ggf wikipedia? lizen?}
 
-Commonly a seperate addressing scheme for communication in such a network is used. In most cases a node is identified by just a sequence of bits, its ID. It is usually represented as a number in decimal or hexadecimal form. All possible IDs together are called the address or ID space and its size vary from network to network but is constant within one network.
+Commonly a seperate addressing scheme for communication in such a network is used. In most cases a node is identified by just a sequence of bits, its ID. It is usually represented as a number in decimal or hexadecimal form. All possible IDs together are called the address or ID space and its size varies from network to network but is constant within one network.
 
-Both these propertys together form a more or less idependant network put on top of the underlaying one. It is then called a peer-to-peer overlay.
+Both these properties together form a more or less idependant network put on top of the underlying one. This is called a peer-to-peer overlay.
 
 
 \section{Darknets: privacy preserving P2P overlays}
@@ -53,13 +53,13 @@ For those oppressed environments a more privacy preserving class of peer-to-peer
 
 \subsection{Trust relation base membership and membership consealment}
 
-Exchanging any kind of information on the internet leads to the necessaty of directly connecting of at least two participants. As explained, this leads to revealing the identity of those in the underlaying network to each other. To overcome the impact of this privacy relevant information disclosure, connections are only established between mutual known and trusted parties.
+Exchanging any kind of information on the internet leads to the necessaty of directly connecting of at least two participants. As explained, this leads to revealing the identity of those in the underlying network to each other. To overcome the impact of this privacy relevant information disclosure, connections are only established between mutual known and trusted parties.
 
 Additionally to communicating with kown and trusted peers only, no information about which peers a node is connected to are passed. On compromisation only the identiy of directly connected peers are affected. Anyway, no node can be held responsible for contact to other nodes, since not even participants know to which peers a node is connected to.
 
 \subsection{Forwarding requests and hop-by-hop anonymity}
 
-But since only communicating with trusted peers would end in a very limited reachability, communication between not directly connected nodes has to be forwarded on some way. Thereby the identity in the underlaying network and information about the topology, who is connected to whom, have to be concealed.
+But since only communicating with trusted peers would end in a very limited reachability, communication between not directly connected nodes has to be forwarded on some way. Thereby the identity in the underlying network and information about the topology, who is connected to whom, have to be concealed.
 
 To achieve this, forwarded messages are modified to originate from the forwarding node itself. Returning answers are modified accordingly and are passed back to the source of the original request. As this is done on every node, the identity of the origin of a message is preserved and no information about the topology is reveald.
 
