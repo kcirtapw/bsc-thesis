@@ -91,6 +91,16 @@ Comparable difficulties arise for measuring any kind of quality while evaluating
 
 As touched before, to develop or improve a network, metrices to measure its quality and performance are 
 
+\begin{itemize}
+\item The simplest metric is the \emph{path length}, or \emph{hop count}, the amount of hops a packet has to be forwarded on until it reaches its destination. It is an important factor of delays in communication and also affects the bandwidth between nodes. The shorter the chosen path is, the faster the communication is and the less the network has to be utilized. The path length, and its average and maximum in a network, are the most commonly used metrics to compare routing.
+
+\item The \emph{overhead} measures how much resources have to be used to transmit the actual information. It can be measured as the \emph{overhead messages ratio} or the overhead bandwidth ratio and is a grade for the efficiency of a system.
+
+\item In one simulation, we will inspect the count of failed return paths. Since a response is sent back the path it came from, it has a fatal impact if a node on that path fails. It can show a upper bound of reliability of a system if it relies on this method.
+
+\item \todo{more?}
+\end{itemize}
+
 \section{Evaluation methods for networks}
 
 For evaluating distributed systems like P2P overlays, and darknets in particular, there are four different approaches. \todo{...mehr}
