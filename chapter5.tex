@@ -1,8 +1,16 @@
 \chapter{Simulation and Evaluation}
 
+After implementing the built model into OMNeT++ modules the simulator is compiled. The easiest and prefered way is to compile all models into one binary together with the simulator code. Then, only the module composition and network desription from ``.ned'' files and the simulation configuration is needed to run a simulation.
 
-\section{Simulation environment}
+\section{Simulation environment and evaluation}
+
+We deployed the simulator and the needed configuration files on a simulaiton server. The machine has 24 cores, 128GB of RAM and runs a 64bit linux 2.6 kernel. Although it is possible to build multiprocessing simulations with OMNeT++, it adds a lot of synchronisation overhead. As our primal setup connects all nodes with a single router, there is no possibility to split the network in usefull partitions that can be simulated individually and only synchronize few exchanged messages. Therefor we decided to use only one processor core per simulation and just run multiple simulation simulataniously.
+
+To evaluate the simulations all possible outputs by the modules were recorded with the described OMNeT++ signaling recording mechanism. They get processed, eg minimum, maximum etc are computed, by OMNeT++, and are written to a simulation specific recording file. From there, they are further processed by us with basic unix command line tools like ``grep'', ``cut'' and so forth.
+
 \section{Used metrices (nicht wirklich hier; eher in implementation)}
+
+
 \begin{itemize}
 \item        (average/max) path length
 \item        sent message count
